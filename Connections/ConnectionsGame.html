@@ -2,12 +2,14 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./Styling/ConnectionsStyling.css">
+    <link rel="stylesheet" href="./Styling/GameContentStyling.css">
+    <script defer type="text/javascript" src="JS/CategoryData.js"></script>
     <script defer type="text/javascript" src="JS/Connections.js"></script>
     <script>
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const date = new Date();
         var month = months[date.getMonth()];
-        var day = date.getDay();
+        var day = date.getDate();
         var year = date.getFullYear();
         const currentDate = month + " " + day + ", " + year;
         window.onload = () => {
@@ -33,22 +35,31 @@
         
         <!-- Game Content Screen -->
         <div id="GameContainer">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="connectionsRow">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="connectionsRow">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="connectionsRow">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="connectionsRow">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            
         </div>
     </div>
 
