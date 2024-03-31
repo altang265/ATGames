@@ -42,3 +42,19 @@
     font-size: larger;
     font-weight: 550;
 }
+
+/* Game Screen */
+#GameContainer {
+    display: none;
+    width: 60vw;
+    max-width: 70vw;
+}
+
+#GameContainer > div {
+    width: 25%;
+    height: 50px;
+    background-color: beige;
+    border-radius: 15px;
+    color: black;
+    font-weight: 700;
+}
