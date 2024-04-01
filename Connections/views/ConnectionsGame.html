@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../Styling/ConnectionsStyling.css">
+    <link rel="stylesheet" href="../Styling/GameContentStyling.css">
+    <script defer type="text/javascript" src="../public/Connections.js"></script>
+    <script>
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const date = new Date();
+        var month = months[date.getMonth()];
+        var day = date.getDate();
+        var year = date.getFullYear();
+        const currentDate = month + " " + day + ", " + year;
+        window.onload = () => {
+            document.getElementById("CurrDate").innerHTML = currentDate;
+        }
+    </script>
+</head>
+<body>
+    <!-- Connections Header -->
+    <hr>
+    <div id="GameTitleHeader">
+        <p id="TitleText"><b>Connections</b></p>
+        <p id="CurrDate"></p>
+    </div>
+    <!-- Content Area -->
+    <div id="GameContent">
+        <!-- Play Button screen -->
+        <div id="GameTitleScreen">
+            <p id="GameContentTitle"><b>Connections</b></p>
+            <p>Group words that share a common thread.</p>
+            <input type="button" id="button_playButton" value="Play">
+        </div>
+        
+        <!-- Game Content Screen -->
+        <div id="GameContainer">
+            <div class="connectionsRow">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="connectionsRow">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="connectionsRow">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="connectionsRow">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Footer Area -->
+    
+</body>
