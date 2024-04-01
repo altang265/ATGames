@@ -22,7 +22,7 @@ const categoryThree = {
 };
 
 const categoryFour = {
-    "Category_Name" : "Ben and Jerry's Icecream",
+    "Category_Name" : "Ben and Jerry's Ice cream",
     "Color" : "Purple",
     "List_of_words" : ["Garcia" , "Monkey", "Food" , "Cheesecake"],
 }
