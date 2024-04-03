@@ -17,7 +17,7 @@ const categoryTwo = {
 
 const categoryThree = {
     "Category_Name" : "Famous Actors of 2023",
-    "Color" : "Light Blue",
+    "Color" : "LightBlue",
     "List_of_words" : ["Pascal", "Winstead", "Armas", "Ortega"],
 };
 
@@ -52,9 +52,11 @@ let shuffledWordList = shuffleArray(connectionsWordList);
 const playButton = document.getElementById("button_playButton");
 playButton.addEventListener("click", () => {
     document.getElementById("GameTitleScreen").style.display = "none";
+    document.getElementById("userControlsContainer").style.display = "block";
     GameContainer.style.display = "flex";
 }); 
 
+// Empty Array to store the user's answers
 let userSelections = [];
 
 // User clicks on one of the buttons
@@ -64,7 +66,7 @@ function userSelection(){
     // and remove it from the user selections array
     if(classList.contains("selected_card")){
         classList.toggle("selected_card");
-        let iOfCard = userSelections.indexOf(this.innerHTML);
+        let iOfCard = userSelections.indexOf(this);
         if(iOfCard != -1){
             userSelections.splice(iOfCard, 1);
         }
@@ -74,16 +76,78 @@ function userSelection(){
         // If there are less then 4 then we should add it to the user selections array 
         // and add the selected css class to it
         classList.toggle("selected_card");
-        userSelections.push(this.innerHTML);
+        userSelections.push(this);
     }
     
     // If there are 4 then we should not let the user select anymore
     if(userSelections.length == 4) {
-        console.log(userSelections);
         return;
     }
     // console.log("User clicked on: " + this.innerHTML);
 }
+
+// Helper function: Given a word. Return the category color it belongs to.
+function findCategory(card){
+    for(let i = 0; i < 4; i++){
+        let x = categoryList[i].List_of_words.indexOf(card.innerHTML);
+        if (x != -1)
+            return categoryList[i].Color;
+    }
+}
+
+// FIXME Logic of letting the user know how many are left
+// Helper function: Given an array of colors. Return if the user is one word away.
+function oneWordAway(inputArray){
+    // Each index represents a color
+    let dict = [0, 0 , 0, 0]
+    for(let input of inputArray){
+        switch (input.innerHTML) {
+            case "Yellow":
+                dict[0]++;
+                break;
+            case "Green":
+                dict[1]++;
+                break;
+            case "LightBlue":
+                dict[2]++;
+                break;
+            default:
+                dict[3]++;
+        }
+    }
+    console.log(dict + "Here is the dictionary of the onewordaway func");
+    if(dict.indexOf(4) != -1){
+        return {"SameColor" : 4}
+    }
+    let output = {
+         
+    }
+    return dict.contains(3);
+    
+}
+
+// Function that checks to see if the user selected cards match one of the categories
+document.getElementById("SubmitButton").addEventListener("click", () => {
+    
+    console.log("Users color guesses: " + userGuesses);
+    // If they all have the same color then the size should be 1
+    if(oneWordAway(userSelections)){
+        // TODO Remove the selected card CSS class. Move the four cards to the top row. Use the set get the color of the category
+        alert("Correct");
+    }
+    if(set.size != 1){
+        alert("Wrong");
+    }
+})
+
+// Function for deselecting all the cards picked by the user
+document.getElementById("DeselectButton").addEventListener("click", () =>{
+    for(let card of userSelections){
+        card.classList.toggle("selected_card");
+    }
+    userSelections.splice(0, userSelections.length);
+    console.log(userSelections + "check to see if empty");
+})
 
 let gameContentRows = document.getElementsByClassName("connectionsRow")
 let wordIter = 0;

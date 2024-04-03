@@ -28,18 +28,19 @@
 /* Game Screen/Board */
 #GameContainer {
     display: none;
-    height: 400px;
-    width: 650px;
+    height: 250px;
+    width: 700px;
     /* margin: 15vh 30vh; */
     justify-content: center;
     text-align: center;
     margin:0 auto;
+    /* border: 1px solid black; */
 }
 
 /* Flexbox columns */
 #GameContainer > div {
     width: 25%;
-    margin: 10px;
+    margin: 3px -1px;
     border-radius: 15px;
     color: black;
     font-weight: 700;
@@ -65,3 +66,18 @@
     background-color: rgb(90, 89, 78);
 }
 
+/* User Controls Area */
+#userControlsContainer {
+    display: none;
+    width: 650px;
+    height: 75px;
+    margin: 15px auto;
+    /* border: 1px solid black; */
+}
+
+#userControlsContainer > input {
+    height: 70%;
+    width: 30%;
+    margin: 5px 3px;
+    font-size: 20px;
+}
