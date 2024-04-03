@@ -6,7 +6,7 @@
     background-color: rgb(179, 167, 254);
     text-align: center;
     font-size: 20px;
-    padding-top: 100px;
+    padding-top: 30px;
 }
 
 #GameContentTitle {
@@ -28,23 +28,26 @@
 /* Game Screen/Board */
 #GameContainer {
     display: none;
-    height: 250px;
+    height: 300px;
     width: 700px;
     /* margin: 15vh 30vh; */
     justify-content: center;
     text-align: center;
     margin:0 auto;
+    flex-direction: column-reverse;
     /* border: 1px solid black; */
+}
+.finished_Category {
+    width: 80%;
 }
 
 /* Flexbox columns */
-#GameContainer > div {
+.connectionsRow {
     width: 25%;
     margin: 3px -1px;
     border-radius: 15px;
     color: black;
     font-weight: 700;
-    flex-direction: row;
 }
 
 /* Each word card on the board */
@@ -59,6 +62,8 @@
     overflow: hidden;
     font-size: 25px;
     text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
 }
 
 .selected_card {
@@ -66,12 +71,18 @@
     background-color: rgb(90, 89, 78);
 }
 
+#livesSection {
+    font-size: 30px;
+    font-weight: 1000;
+    ;
+}
+
 /* User Controls Area */
 #userControlsContainer {
     display: none;
     width: 650px;
     height: 75px;
-    margin: 15px auto;
+    margin: 20px auto;
     /* border: 1px solid black; */
 }
 
@@ -80,4 +91,5 @@
     width: 30%;
     margin: 5px 3px;
     font-size: 20px;
+    font-weight: 500;
 }

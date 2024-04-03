@@ -6,7 +6,7 @@
 const categoryOne = {
     "Category_Name" : "Burger Companies",
     "Color" : "Yellow",
-    "List_of_words" : ["Kings", "Guys" , "Shack" , "Burger"],
+    "List_of_words" : ["King", "Guys" , "Shack" , "Burger"],
 };
 
 const categoryTwo = {
@@ -28,7 +28,7 @@ const categoryFour = {
 }
 
 const categoryList = [categoryOne, categoryTwo, categoryThree, categoryFour];
-var connectionsWordList = categoryOne.List_of_words.concat(categoryTwo.List_of_words, categoryThree.List_of_words, categoryFour.List_of_words);
+let connectionsWordList = categoryOne.List_of_words.concat(categoryTwo.List_of_words, categoryThree.List_of_words, categoryFour.List_of_words);
 // console.log("Here is the list of words for all the categories " + connectionsWordList.toString());
 
 // Randomize all the categories and their words 
@@ -45,20 +45,28 @@ function shuffleArray(inputArray) {
     return outputArray;
 }
 
-let shuffledWordList = shuffleArray(connectionsWordList);
 // console.log("Shuffled list of words: " + shuffledWordList);
 
 // Play button click event
 const playButton = document.getElementById("button_playButton");
 playButton.addEventListener("click", () => {
     document.getElementById("GameTitleScreen").style.display = "none";
+    document.getElementById("livesSection").style.display = "block";
+    document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
     document.getElementById("userControlsContainer").style.display = "block";
-    GameContainer.style.display = "flex";
+    document.getElementById("GameContainer").style.display = "flex";
+    let rows = document.getElementsByClassName("connectionsRow");
+    for(let row of rows){
+        row.style.display = "flex";
+    }
+        // element.style.display = "flex"
+    
 }); 
 
 // Empty Array to store the user's answers
 let userSelections = [];
-
+let livesLeft = 4;
+let categoriesLeft = categoryList.length;
 // User clicks on one of the buttons
 function userSelection(){
     let classList = this.classList;
@@ -95,13 +103,37 @@ function findCategory(card){
     }
 }
 
-// FIXME Logic of letting the user know how many are left
-// Helper function: Given an array of colors. Return if the user is one word away.
-function oneWordAway(inputArray){
+// Helper function: When a category is completed then we should trigger the complete animation
+// Parameter: The color of the category that we are making and an array of HTML objects to change
+// TODO Create the complete animation just like the real connections game
+function completeCategory(color, arrayOfUserAnswers){
+    console.log("Before spliced user guesses: " + connectionsWordList
+    + " \nLength: " + connectionsWordList.length);
+    for(let card of arrayOfUserAnswers){
+        card.style.backgroundColor = color;
+        // Remove all the user guesses from the connections word list
+        let cardIndex = connectionsWordList.indexOf(card.innerHTML);
+        console.log("Removing " + card.innerHTML + " at index: " + cardIndex);
+        connectionsWordList.splice(cardIndex, 1);
+        card.removeEventListener("click", userSelection);
+        // console.log("Color changed to: " + color);
+    };
+    deselectAll();
+    console.log("after spliced user guesses: " + connectionsWordList 
+    + " \nLength: " + connectionsWordList.length);
+    // setUpBoard(categoriesLeft--, shuffleArray(connectionsWordList));
+    
+}
+// Helper function: Given an array of colors. 
+// Returns 1 if the user is one word away.
+// Returns 0 if the user is zero words away 
+function numWordsAway(inputArray){
     // Each index represents a color
-    let dict = [0, 0 , 0, 0]
+    let dict = [0, 0 , 0, 0];
+    let c;
     for(let input of inputArray){
-        switch (input.innerHTML) {
+        c = findCategory(input);
+        switch (c) {
             case "Yellow":
                 dict[0]++;
                 break;
@@ -111,55 +143,81 @@ function oneWordAway(inputArray){
             case "LightBlue":
                 dict[2]++;
                 break;
-            default:
+            case "Purple":
                 dict[3]++;
+                break;
         }
     }
-    console.log(dict + "Here is the dictionary of the onewordaway func");
-    if(dict.indexOf(4) != -1){
-        return {"SameColor" : 4}
+    // console.log(dict + "Here is the dictionary of the onewordaway func");
+    // Worry only about having a max of three or four
+    // TODO Keep track of all the guesses the user has made in an array. 
+    // (For the screen that displays at the end)
+    if(dict.includes(4)){
+        completeCategory(c, userSelections);
+        return {
+            "Left" : 0,
+            "Color" : c,
+        };
+    } else if (dict.includes(3)){
+        livesLeft--;
+        return 1;
+    } else {
+        livesLeft--;
+        return -1;
     }
-    let output = {
-         
-    }
-    return dict.contains(3);
+    
     
 }
 
 // Function that checks to see if the user selected cards match one of the categories
 document.getElementById("SubmitButton").addEventListener("click", () => {
-    
-    console.log("Users color guesses: " + userGuesses);
     // If they all have the same color then the size should be 1
-    if(oneWordAway(userSelections)){
-        // TODO Remove the selected card CSS class. Move the four cards to the top row. Use the set get the color of the category
+    let numWords = numWordsAway(userSelections);
+    if(numWords == 0){
+        /** TODO Remove the selected card CSS class. Move the four cards to the top row. 
+        Use the set get the color of the category
+        */
         alert("Correct");
+    } else if(numWords == 1){
+        alert("One Word away...");
+        document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
+    } else {
+        document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
+        // do something 
     }
-    if(set.size != 1){
-        alert("Wrong");
+    if(livesLeft == 0){
+        alert("Next Time!! You bad :)");
     }
 })
 
 // Function for deselecting all the cards picked by the user
-document.getElementById("DeselectButton").addEventListener("click", () =>{
+function deselectAll(){
     for(let card of userSelections){
         card.classList.toggle("selected_card");
     }
     userSelections.splice(0, userSelections.length);
-    console.log(userSelections + "check to see if empty");
-})
+    // console.log(userSelections + "check to see if empty");
+}
 
-let gameContentRows = document.getElementsByClassName("connectionsRow")
-let wordIter = 0;
-// Setup all the clickable tiles 
-for(let i = 0; i < gameContentRows.length; i++){
-    let buttons  = gameContentRows[i].children;
-    for(let j = 0; j < buttons.length; j++){
-        let classL = buttons[j].classList;
-        classL.add("GameCard");
-        buttons[j].addEventListener("click", userSelection);
-        buttons[j].innerHTML = shuffledWordList[wordIter++];
+document.getElementById("DeselectButton").addEventListener("click", deselectAll);
+
+function setUpBoard(numRows, wordList){
+    let gameContentRows = document.getElementsByClassName("connectionsRow")
+    let wordIter = 0;
+    // Setup all the clickable tiles 
+    for(let i = 0; i < numRows; i++){
+        let buttons  = gameContentRows[i].children;
+        for(let j = 0; j < buttons.length; j++){
+            let classL = buttons[j].classList;
+            classL.add("GameCard");
+            buttons[j].addEventListener("click", userSelection);
+            buttons[j].innerHTML = wordList[wordIter++];
+        }
     }
 }
+connectionsWordList = shuffleArray(connectionsWordList);
+// Initialize the starting board
+setUpBoard(4, connectionsWordList);
+
 
 
