@@ -57,12 +57,32 @@ playButton.addEventListener("click", () => {
 
 let userSelections = [];
 
-// TODO Create a separate css class for selected card versus non-selected card
 // User clicks on one of the buttons
 function userSelection(){
-    this.style.backgroundColor = "#5a594e";
-    this.style.color = "#FFFFFF";
-    console.log("User clicked on: " + this.innerHTML);
+    let classList = this.classList;
+    // If we click on a card that has already been selected then we should remove the selected card class
+    // and remove it from the user selections array
+    if(classList.contains("selected_card")){
+        classList.toggle("selected_card");
+        let iOfCard = userSelections.indexOf(this.innerHTML);
+        if(iOfCard != -1){
+            userSelections.splice(iOfCard, 1);
+        }
+        return;
+    }
+    if(userSelections.length < 4){
+        // If there are less then 4 then we should add it to the user selections array 
+        // and add the selected css class to it
+        classList.toggle("selected_card");
+        userSelections.push(this.innerHTML);
+    }
+    
+    // If there are 4 then we should not let the user select anymore
+    if(userSelections.length == 4) {
+        console.log(userSelections);
+        return;
+    }
+    // console.log("User clicked on: " + this.innerHTML);
 }
 
 let gameContentRows = document.getElementsByClassName("connectionsRow")
@@ -71,6 +91,8 @@ let wordIter = 0;
 for(let i = 0; i < gameContentRows.length; i++){
     let buttons  = gameContentRows[i].children;
     for(let j = 0; j < buttons.length; j++){
+        let classL = buttons[j].classList;
+        classL.add("GameCard");
         buttons[j].addEventListener("click", userSelection);
         buttons[j].innerHTML = shuffledWordList[wordIter++];
     }
