@@ -5,10 +5,11 @@ const categoryOne = {
 };
 
 const categoryTwo = {
-    "Category_Name" : "Starts with Key",
+    "Category_Name" : "Portable things",
     "Color" : "Green",
-    "List_of_words" : ["Note" , "Chain" , "Stone" , "Hole"],
+    "List_of_words" : ["Speaker" , "Heater" , "Generator" , "Grill"],
 };
+
 
 const categoryThree = {
     "Category_Name" : "Ends in board",

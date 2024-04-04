@@ -5,15 +5,14 @@ const categoryOne = {
 };
 
 const categoryTwo = {
-    "Category_Name" : "_______ Soup",
+    "Category_Name" : "Portable things",
     "Color" : "Green",
-    "List_of_words" : ["Cabbage", "Lentil", "Miso", "Tortilla"],
+    "List_of_words" : ["Speaker" , "Heater" , "Generator" , "Grill"],
 };
-
 const categoryThree = {
-    "Category_Name" : "",
+    "Category_Name" : "_______ Soup",
     "Color" : "LightBlue",
-    "List_of_words" : [""],
+    "List_of_words" : ["Cabbage", "Lentil", "Miso", "Tortilla"],
 };
 
 const categoryFour = {
