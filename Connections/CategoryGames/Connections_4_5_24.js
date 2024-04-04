@@ -17,7 +17,7 @@ const categoryThree = {
 };
 
 const categoryFour = {
-    "Category_Name" : "Caprese Panini",
+    "Category_Name" : "Caprese Panini Ingredients",
     "Color" : "Purple",
     "List_of_words" : ["Ciabatta" , "Tomatoes", "Mozzarella" , "Basil"],
 }

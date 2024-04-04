@@ -11,13 +11,14 @@ const categoryTwo = {
 };
 
 const categoryThree = {
-    "Category_Name" : "Chips",
+    "Category_Name" : "Crops on a farm",
     "Color" : "LightBlue",
+    "List_of_words" : ["Wheat" , "Corn" , "Carrot" , "Oats"],
+}
+
+const categoryFour = {
+    "Category_Name" : "Chips",
+    "Color" : "Purple",
     "List_of_words" : ["Poker" , "Chocolate" , "Potato" , "Memory"],
 };
 
-const categoryFour = {
-    "Category_Name" : "Crops on a farm",
-    "Color" : "Purple",
-    "List_of_words" : ["Wheat" , "Corn" , "Carrot" , "Oats"],
-}

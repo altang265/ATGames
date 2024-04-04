@@ -19,5 +19,5 @@ const categoryThree = {
 const categoryFour = {
     "Category_Name" : "Types of Belts",
     "Color" : "Purple",
-    "List_of_words" : ["Pants" , "Tool", "Weightlifting" , "Seat"],
+    "List_of_words" : ["Safety" , "Tool", "Weightlifting" , "Seat"],
 }
