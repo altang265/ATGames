@@ -62,13 +62,15 @@ playButton.addEventListener("click", () => {
         // element.style.display = "flex"
     
 }); 
-
+// GAME RULES
 // Empty Array to store the user's answers
 let userSelections = [];
 let livesLeft = 4;
 let categoriesLeft = categoryList.length;
+let submissionHistoryList = [];
+
 // User clicks on one of the buttons
-function userSelection(){
+function cardToggleAction(){
     let classList = this.classList;
     // If we click on a card that has already been selected then we should remove the selected card class
     // and remove it from the user selections array
@@ -122,12 +124,14 @@ function completeCategory(color, arrayOfUserAnswers){
         card.style.backgroundColor = color;
         // Remove all the user guesses from the connections word list
         removeWord(card.innerHTML);
-        card.removeEventListener("click", userSelection);
+        card.removeEventListener("click", cardToggleAction);
         // console.log("Color changed to: " + color);
     };
     deselectAll();
     if(categoriesLeft == 0){
-        alert("Congrats you got them all!");
+        // alert("Congrats you got them all!");
+        // TODO Show the results screen
+        showResults();
     }
     //setUpBoard(--categoriesLeft, connectionsWordList);
 }
@@ -135,6 +139,9 @@ function completeCategory(color, arrayOfUserAnswers){
 // Returns 1 if the user is one word away.
 // Returns 0 if the user is zero words away 
 function numWordsAway(inputArray){
+    // Add the user's guesses to the submissionHistory Array whenever they submit
+    submissionHistoryList.push(inputArray);
+    console.log("Submission history: " + submissionHistoryList + "\n");
     // Each index represents a color
     let dict = [0, 0 , 0, 0];
     let c;
@@ -214,7 +221,7 @@ function deselectAll(){
 document.getElementById("DeselectButton").addEventListener("click", deselectAll);
 
 function setUpBoard(numRows, wordList){
-    console.log("number of rows to create: " + numRows);
+    // console.log("number of rows to create: " + numRows);
     let gameContentRows = document.getElementsByClassName("connectionsRow")
     let wordIter = 0;
     // Setup all the clickable tiles 
@@ -223,12 +230,34 @@ function setUpBoard(numRows, wordList){
         for(let j = 0; j < buttons.length; j++){
             let classL = buttons[j].classList;
             classL.add("GameCard");
-            buttons[j].addEventListener("click", userSelection);
+            buttons[j].addEventListener("click", cardToggleAction);
             buttons[j].innerHTML = wordList[wordIter++];
         }
     }
     // Setup the other completed categories
 }
+
+//Show the results screen
+function showResults(){
+    let resultsContainer = document.getElementById("GuessHistoryContainer");
+    let row;
+    // Create a row for every submission the user made throughout the game
+    for(let i = 0; i < submissionHistoryList.length-1; i++){
+        row = document.createElement("div");
+        row.setAttribute("class", "ResultsRow");
+        // Loop through each submission the user made and create colored boxes that 
+        // correspond with their guess
+        for(let j = 0; j < 5; j++){
+            let colorBlock = createElement("div");
+            let color = submissionHistoryList[i][j].Color;
+            colorBlock.style.backgroundColor = color;
+            row.appendChild(colorBlock);
+        }
+        // Add the row of colors into the container
+        resultsContainer.appendChild(row); 
+    }
+}
+
 connectionsWordList = shuffleArray(connectionsWordList);
 // Initialize the starting board
 setUpBoard(4, connectionsWordList);
