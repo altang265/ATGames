@@ -102,27 +102,34 @@ function findCategory(card){
             return categoryList[i].Color;
     }
 }
+// Helper Function: Remove Word from the word list
+function removeWord(word){
+    let poppedWord;
+    for(let i = 0; i < connectionsWordList.length; i++){
+        poppedWord = connectionsWordList.shift();
+        if(poppedWord != word)
+            connectionsWordList.push(poppedWord);
+    }
+    // console.log("After removed user guess: " + connectionsWordList
+    // + " \nLength: " + connectionsWordList.length);
+}
 
 // Helper function: When a category is completed then we should trigger the complete animation
 // Parameter: The color of the category that we are making and an array of HTML objects to change
 // TODO Create the complete animation just like the real connections game
 function completeCategory(color, arrayOfUserAnswers){
-    console.log("Before spliced user guesses: " + connectionsWordList
-    + " \nLength: " + connectionsWordList.length);
     for(let card of arrayOfUserAnswers){
         card.style.backgroundColor = color;
         // Remove all the user guesses from the connections word list
-        let cardIndex = connectionsWordList.indexOf(card.innerHTML);
-        console.log("Removing " + card.innerHTML + " at index: " + cardIndex);
-        connectionsWordList.splice(cardIndex, 1);
+        removeWord(card.innerHTML);
         card.removeEventListener("click", userSelection);
         // console.log("Color changed to: " + color);
     };
     deselectAll();
-    console.log("after spliced user guesses: " + connectionsWordList 
-    + " \nLength: " + connectionsWordList.length);
-    // setUpBoard(categoriesLeft--, shuffleArray(connectionsWordList));
-    
+    if(categoriesLeft == 0){
+        alert("Congrats you got them all!");
+    }
+    //setUpBoard(--categoriesLeft, connectionsWordList);
 }
 // Helper function: Given an array of colors. 
 // Returns 1 if the user is one word away.
@@ -154,6 +161,7 @@ function numWordsAway(inputArray){
     // (For the screen that displays at the end)
     if(dict.includes(4)){
         completeCategory(c, userSelections);
+        categoriesLeft--;
         return {
             "Left" : 0,
             "Color" : c,
@@ -177,7 +185,6 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         /** TODO Remove the selected card CSS class. Move the four cards to the top row. 
         Use the set get the color of the category
         */
-        alert("Correct");
     } else if(numWords == 1){
         alert("One Word away...");
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
@@ -186,7 +193,11 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         // do something 
     }
     if(livesLeft == 0){
+        document.getElementById('GameContent').style.display = "none";
         alert("Next Time!! You bad :)");
+    }
+    if(categoriesLeft == 0){
+        alert("Congrats you got them all!");
     }
 })
 
@@ -202,6 +213,7 @@ function deselectAll(){
 document.getElementById("DeselectButton").addEventListener("click", deselectAll);
 
 function setUpBoard(numRows, wordList){
+    console.log("number of rows to create: " + numRows);
     let gameContentRows = document.getElementsByClassName("connectionsRow")
     let wordIter = 0;
     // Setup all the clickable tiles 
@@ -214,6 +226,7 @@ function setUpBoard(numRows, wordList){
             buttons[j].innerHTML = wordList[wordIter++];
         }
     }
+    // Setup the other completed categories
 }
 connectionsWordList = shuffleArray(connectionsWordList);
 // Initialize the starting board
