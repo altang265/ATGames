@@ -11,13 +11,13 @@ const categoryTwo = {
 };
 
 const categoryThree = {
-    "Category_Name" : "",
+    "Category_Name" : "Chips",
     "Color" : "LightBlue",
-    "List_of_words" : [""],
+    "List_of_words" : ["Poker" , "Chocolate" , "Potato" , "Memory"],
 };
 
 const categoryFour = {
-    "Category_Name" : "",
+    "Category_Name" : "Crops on a farm",
     "Color" : "Purple",
-    "List_of_words" : [""],
+    "List_of_words" : ["Wheat" , "Corn" , "Carrot" , "Oats"],
 }
