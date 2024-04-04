@@ -190,7 +190,6 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
     } else {
         // TODO Add the shake effect when the user gets it wrong
-        alert("Wrong...");
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
         // do something 
     }
