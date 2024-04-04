@@ -131,7 +131,7 @@ function completeCategory(color, arrayOfUserAnswers){
     if(categoriesLeft == 0){
         // alert("Congrats you got them all!");
         // TODO Show the results screen
-        showResults();
+        showResults;
     }
     //setUpBoard(--categoriesLeft, connectionsWordList);
 }
@@ -239,6 +239,7 @@ function setUpBoard(numRows, wordList){
 
 //Show the results screen
 function showResults(){
+    document.getElementById("ResultsContainer").style.display = "block";
     let resultsContainer = document.getElementById("GuessHistoryContainer");
     let row;
     // Create a row for every submission the user made throughout the game
