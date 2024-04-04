@@ -67,7 +67,7 @@ playButton.addEventListener("click", () => {
 let userSelections = [];
 let livesLeft = 4;
 let categoriesLeft = categoryList.length;
-let submissionHistoryList = [];
+const submissionHistoryList = [];
 
 // User clicks on one of the buttons
 function cardToggleAction(){
@@ -204,8 +204,12 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         document.getElementById('GameContent').style.display = "none";
         alert("Next Time!! You bad :)");
     }
-    if(categoriesLeft == 0){
-        alert("Congrats you got them all!");
+    if(categoriesLeft == 0 && submissionHistoryList.length >= 4){
+        document.getElementById('GameContent').style.display = "none";
+        let submitList = submissionHistoryList;
+        console.log("Length of the list: " + submitList.length);
+        showResults(submitList);
+        // alert("Congrats you got them all!");
     }
 })
 
@@ -238,19 +242,20 @@ function setUpBoard(numRows, wordList){
 }
 
 //Show the results screen
-function showResults(){
+function showResults(list){
+    console.log("Show Results: " + list);
     document.getElementById("ResultsContainer").style.display = "block";
     let resultsContainer = document.getElementById("GuessHistoryContainer");
     let row;
     // Create a row for every submission the user made throughout the game
-    for(let i = 0; i < submissionHistoryList.length-1; i++){
+    for(let i = 0; i < list.length-1; i++){
         row = document.createElement("div");
         row.setAttribute("class", "ResultsRow");
         // Loop through each submission the user made and create colored boxes that 
         // correspond with their guess
         for(let j = 0; j < 5; j++){
-            let colorBlock = createElement("div");
-            let color = submissionHistoryList[i][j].Color;
+            let colorBlock = document.createElement("div");
+            let color = list[i][j].Color;
             colorBlock.style.backgroundColor = color;
             row.appendChild(colorBlock);
         }
