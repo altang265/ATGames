@@ -9,6 +9,7 @@ const categoryTwo = {
     "Color" : "Green",
     "List_of_words" : ["Speaker" , "Heater" , "Generator" , "Grill"],
 };
+
 const categoryThree = {
     "Category_Name" : "_______ Soup",
     "Color" : "LightBlue",
