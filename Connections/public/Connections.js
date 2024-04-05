@@ -1,31 +1,31 @@
 // List of Categories
-
+// TODO Quinections 
 // Each category object should have a name, color for difficulty, four words
 // for the category
-
 const categoryOne = {
-    "Category_Name" : "Burger Companies",
+    "Category_Name" : "Poisonous Champs",
     "Color" : "Yellow",
-    "List_of_words" : ["King", "Guys" , "Shack" , "Burger"],
+    "List_of_words" : ["Teemo", "Cassio", "Singed" , "Twitch"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Greatest Scientific Minds",
+    "Category_Name" : "Yordles",
     "Color" : "Green",
-    "List_of_words" : ["Galileo", "Nikola", "Marie", "Albert"],
+    "List_of_words" : ["Lulu", "Ziggs", "Trist" , "Kled"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Famous Actors of 2023",
+    "Category_Name" : "CC for at least two seconds",
     "Color" : "LightBlue",
-    "List_of_words" : ["Pascal", "Winstead", "Armas", "Ortega"],
+    "List_of_words" : ["Morgana", "Malz" , "Varus" , "Veigar"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Ben and Jerry's Ice cream",
+    "Category_Name" : "Arcane Characters",
     "Color" : "Purple",
-    "List_of_words" : ["Garcia" , "Monkey", "Food" , "Cheesecake"],
+    "List_of_words" : ["Jayce" , "Ekko" , "Heimer" , "Viktor"],
 }
+
 
 const categoryList = [categoryOne, categoryTwo, categoryThree, categoryFour];
 let connectionsWordList = categoryOne.List_of_words.concat(categoryTwo.List_of_words, categoryThree.List_of_words, categoryFour.List_of_words);
@@ -129,9 +129,8 @@ function completeCategory(color, arrayOfUserAnswers){
     };
     deselectAll();
     if(categoriesLeft == 0){
-        // alert("Congrats you got them all!");
+        alert("Congrats you got them all!");
         // TODO Show the results screen
-        showResults;
     }
     //setUpBoard(--categoriesLeft, connectionsWordList);
 }
@@ -140,8 +139,13 @@ function completeCategory(color, arrayOfUserAnswers){
 // Returns 0 if the user is zero words away 
 function numWordsAway(inputArray){
     // Add the user's guesses to the submissionHistory Array whenever they submit
-    submissionHistoryList.push(inputArray);
+    console.log(submissionHistoryList.push(inputArray) + "\nList that was pushed: " + inputArray);
     console.log("Submission history: " + submissionHistoryList + "\n");
+    for(let x of submissionHistoryList){
+        for (let j of x.values()){
+            console.log("after push in numwordsaway: " + j);
+        }
+    }
     // Each index represents a color
     let dict = [0, 0 , 0, 0];
     let c;
@@ -184,8 +188,11 @@ function numWordsAway(inputArray){
     
 }
 
+let historyList = [];
 // Function that checks to see if the user selected cards match one of the categories
 document.getElementById("SubmitButton").addEventListener("click", () => {
+    historyList = submissionHistoryList;
+    console.log("The history list: " + historyList);
     // If they all have the same color then the size should be 1
     let numWords = numWordsAway(userSelections);
     if(numWords == 0){
@@ -204,13 +211,31 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         document.getElementById('GameContent').style.display = "none";
         alert("Next Time!! You bad :)");
     }
-    if(categoriesLeft == 0 && submissionHistoryList.length >= 4){
-        document.getElementById('GameContent').style.display = "none";
-        let submitList = submissionHistoryList;
-        console.log("Length of the list: " + submitList.length);
-        showResults(submitList);
-        // alert("Congrats you got them all!");
-    }
+    console.log("categories left" + categoriesLeft + "\nsubmission history list length: " + submissionHistoryList + "\nhistory list length: " + historyList );
+    // if(categoriesLeft == 0 && submissionHistoryList.length >= 4){
+    //     document.getElementById('GameContent').style.display = "none";
+    //     document.getElementById("ResultsContainer").style.display = "block";
+        
+    //     console.log("Submission full history: "  + historyList);
+    //     let resultsContainer = document.getElementById("GuessHistoryContainer");
+    //     let row;
+    //     // Create a row for every submission the user made throughout the game
+    //     for(let i = 0; i < list.length-1; i++){
+    //         row = document.createElement("div");
+    //         row.setAttribute("class", "ResultsRow");
+    //         // Loop through each submission the user made and create colored boxes that 
+    //         // correspond with their guess
+    //         for(let j = 0; j < 5; j++){
+    //             let colorBlock = document.createElement("div");
+    //             let color = list[i][j].Color;
+    //             colorBlock.style.backgroundColor = color;
+    //             row.appendChild(colorBlock);
+    //         }
+    //         // Add the row of colors into the container
+    //         resultsContainer.appendChild(row);
+    //         // alert("Congrats you got them all!");
+    //     }
+    // }
 })
 
 // Function for deselecting all the cards picked by the user
@@ -239,29 +264,6 @@ function setUpBoard(numRows, wordList){
         }
     }
     // Setup the other completed categories
-}
-
-//Show the results screen
-function showResults(list){
-    console.log("Show Results: " + list);
-    document.getElementById("ResultsContainer").style.display = "block";
-    let resultsContainer = document.getElementById("GuessHistoryContainer");
-    let row;
-    // Create a row for every submission the user made throughout the game
-    for(let i = 0; i < list.length-1; i++){
-        row = document.createElement("div");
-        row.setAttribute("class", "ResultsRow");
-        // Loop through each submission the user made and create colored boxes that 
-        // correspond with their guess
-        for(let j = 0; j < 5; j++){
-            let colorBlock = document.createElement("div");
-            let color = list[i][j].Color;
-            colorBlock.style.backgroundColor = color;
-            row.appendChild(colorBlock);
-        }
-        // Add the row of colors into the container
-        resultsContainer.appendChild(row); 
-    }
 }
 
 connectionsWordList = shuffleArray(connectionsWordList);
