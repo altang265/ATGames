@@ -1,0 +1,20 @@
+#ResultsContainer {
+    margin: 2vh auto;
+    border: 1px solid black;
+    width: 70%;
+
+}
+
+.ResultsRow{
+    margin: 5px auto;
+    display: flex;
+    width: 40%;
+    /* border: 1px solid black; */
+    justify-content: center;
+}
+
+.ResultBlock {
+    height: 40px;
+    width: 40px;
+    margin: 1%;
+}

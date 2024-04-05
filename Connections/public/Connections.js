@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "Poisonous Champs",
+    "Category_Name" : "Burger Companies",
     "Color" : "Yellow",
-    "List_of_words" : ["Teemo", "Cassio", "Singed" , "Twitch"],
+    "List_of_words" : ["King", "Guys" , "Shack" , "Burger"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Yordles",
+    "Category_Name" : "Greatest Scientific Minds",
     "Color" : "Green",
-    "List_of_words" : ["Lulu", "Ziggs", "Trist" , "Kled"],
+    "List_of_words" : ["Galileo", "Nikola", "Marie", "Albert"],
 };
 
 const categoryThree = {
-    "Category_Name" : "CC for at least two seconds",
+    "Category_Name" : "Famous Actors of 2023",
     "Color" : "LightBlue",
-    "List_of_words" : ["Morgana", "Malz" , "Varus" , "Veigar"],
+    "List_of_words" : ["Pascal", "Winstead", "Armas", "Ortega"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Arcane Characters",
+    "Category_Name" : "Ben and Jerry's Ice cream",
     "Color" : "Purple",
-    "List_of_words" : ["Jayce" , "Ekko" , "Heimer" , "Viktor"],
+    "List_of_words" : ["Garcia" , "Monkey", "Food" , "Cheesecake"],
 }
 
 
@@ -138,14 +138,6 @@ function completeCategory(color, arrayOfUserAnswers){
 // Returns 1 if the user is one word away.
 // Returns 0 if the user is zero words away 
 function numWordsAway(inputArray){
-    // Add the user's guesses to the submissionHistory Array whenever they submit
-    console.log(submissionHistoryList.push(inputArray) + "\nList that was pushed: " + inputArray);
-    console.log("Submission history: " + submissionHistoryList + "\n");
-    for(let x of submissionHistoryList){
-        for (let j of x.values()){
-            console.log("after push in numwordsaway: " + j);
-        }
-    }
     // Each index represents a color
     let dict = [0, 0 , 0, 0];
     let c;
@@ -165,7 +157,10 @@ function numWordsAway(inputArray){
                 dict[3]++;
                 break;
         }
+        // Add the user's guesses to the submissionHistory Array whenever they submit
+        submissionHistoryList.push(c);
     }
+    // console.log("Num Words away submission history: " + submissionHistoryList + "\n");
     // console.log(dict + "Here is the dictionary of the onewordaway func");
     // Worry only about having a max of three or four
     // TODO Keep track of all the guesses the user has made in an array. 
@@ -188,11 +183,8 @@ function numWordsAway(inputArray){
     
 }
 
-let historyList = [];
 // Function that checks to see if the user selected cards match one of the categories
 document.getElementById("SubmitButton").addEventListener("click", () => {
-    historyList = submissionHistoryList;
-    console.log("The history list: " + historyList);
     // If they all have the same color then the size should be 1
     let numWords = numWordsAway(userSelections);
     if(numWords == 0){
@@ -211,32 +203,46 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         document.getElementById('GameContent').style.display = "none";
         alert("Next Time!! You bad :)");
     }
-    console.log("categories left" + categoriesLeft + "\nsubmission history list length: " + submissionHistoryList + "\nhistory list length: " + historyList );
-    // if(categoriesLeft == 0 && submissionHistoryList.length >= 4){
-    //     document.getElementById('GameContent').style.display = "none";
-    //     document.getElementById("ResultsContainer").style.display = "block";
-        
-    //     console.log("Submission full history: "  + historyList);
-    //     let resultsContainer = document.getElementById("GuessHistoryContainer");
-    //     let row;
-    //     // Create a row for every submission the user made throughout the game
-    //     for(let i = 0; i < list.length-1; i++){
-    //         row = document.createElement("div");
-    //         row.setAttribute("class", "ResultsRow");
-    //         // Loop through each submission the user made and create colored boxes that 
-    //         // correspond with their guess
-    //         for(let j = 0; j < 5; j++){
-    //             let colorBlock = document.createElement("div");
-    //             let color = list[i][j].Color;
-    //             colorBlock.style.backgroundColor = color;
-    //             row.appendChild(colorBlock);
-    //         }
-    //         // Add the row of colors into the container
-    //         resultsContainer.appendChild(row);
-    //         // alert("Congrats you got them all!");
-    //     }
-    // }
+    // console.log("categories left" + categoriesLeft + "\nsubmission history list length: " + submissionHistoryList + "\nhistory list length: " + historyList );
+    if(categoriesLeft == 0){
+        showResults();
+    }
 })
+
+// Helper function that shows the history of all the guesses the user made
+function showResults(){
+    // Hide all the game containers
+    document.getElementById('GameContainer').style.display = "none";
+    document.getElementById("livesSection").style.display = "none";
+    document.getElementById("userControlsContainer").style.display = "none";
+
+    // Show the results for the game
+    document.getElementById("ResultsContainer").style.display = "block";
+
+    let numRows = submissionHistoryList.length/4;
+    let historyIter = 0;
+    
+    // TODO Create a history that is stored in the localStorage
+    // Create a row for every submission the user made throughout the game
+    for(let i = 1; i <= numRows; i++){
+        row = document.createElement("div");
+        row.setAttribute("class", "ResultsRow");
+        // console.log("Row " + i + " created.\n");
+        // Loop through each submission the user made and create colored boxes that 
+        // correspond with their guess
+        for(let j = 0; j < 4; j++){
+            let colorBlock = document.createElement("div");
+            let color = submissionHistoryList[historyIter++];
+            colorBlock.style.backgroundColor = color;
+            colorBlock.setAttribute("class", "ResultBlock");
+            // console.log("Made results block: " + color);
+            row.appendChild(colorBlock);
+        }
+        // Add the row of colors into the container
+        document.getElementById("GuessHistoryContainer").appendChild(row);
+        // alert("Congrats you got them all!");
+    }
+}
 
 // Function for deselecting all the cards picked by the user
 function deselectAll(){
