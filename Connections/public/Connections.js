@@ -130,8 +130,6 @@ function completeCategory(color, arrayOfUserAnswers){
     for(let content of replacedRow){
         if(!arrayOfUserAnswers.includes(content)){
             replacedRowList.push(content.innerHTML);
-        } else {
-            content.remove();
         }
     }
     // Create a single div that says the category name and the list of words
