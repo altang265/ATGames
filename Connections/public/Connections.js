@@ -117,23 +117,61 @@ function removeWord(word){
     // + " \nLength: " + connectionsWordList.length);
 }
 
+// Helper function that returns the category name according to color provided
+// Returns Category Object 
+function getCategoryInfo(color){
+    for(let cat of categoryList){
+        if((cat.Color == color)){
+            return cat;
+        }
+    }
+}
+
+function postCatCompletion(replacementWords){
+    let board = document.getElementsByClassName("connectionsRow");
+    // Loop through the board and find the 
+    for(let row of board.children){
+        for(let card of row.children){
+            // 
+        }
+    }
+}
+
 // Helper function: When a category is completed then we should trigger the complete animation
 // Parameter: The color of the category that we are making and an array of HTML objects to change
 // TODO Create the complete animation just like the real connections game
 let replacedRowList = [];
 function completeCategory(color, arrayOfUserAnswers){
     //Store what is in the row it is going to replace
-    let rowIndex = 4-categoriesLeft;
-    console.log("Row Index: " + rowIndex);
-    let replacedRow = document.getElementsByClassName("connectionsRow")[rowIndex].children;
-    
-    for(let content of replacedRow){
+    // console.log("Row Index: " + rowIndex);
+
+    let replacedRow = document.getElementsByClassName("connectionsRow")[0];
+    let divReplacement = document.createElement("div");
+    divReplacement.setAttribute("class" , "completedCategory");
+    divReplacement.style.backgroundColor = getCategoryInfo(color).Color;
+    // Create a header for the category name 
+    let completedCatHeader = document.createElement("h3");
+    // The header should hold the category name according the color that was completed
+    completedCatHeader.innerHTML = getCategoryInfo(color).Category_Name;
+    // Add the header to the div that will 
+    divReplacement.appendChild(completedCatHeader);
+    let textForCompDiv = document.createElement("p");
+    textForCompDiv.innerHTML = getCategoryInfo(color).List_of_words;
+    // console.log("Text to add for the completed category: " + textForCompDiv.innerHTML);
+    divReplacement.appendChild(textForCompDiv);
+    console.log("Length of children of row: " + replacedRow.children.length);
+    for(let i = replacedRow.children.length-1; i >= 0; i--){
+        let content = replacedRow.children[i];
         if(!arrayOfUserAnswers.includes(content)){
             replacedRowList.push(content.innerHTML);
+            content.remove();
         }
+        // TODO Remove all the divs that are inside of the row
+        content.remove();
     }
-    // Create a single div that says the category name and the list of words
-    let fullCategory = document.createElement("div");
+
+    replacedRow.appendChild(divReplacement);
+    replacedRow.removeAttribute("class");
     
     console.log("List for replaced stuff: " + replacedRowList)
     for(let card of arrayOfUserAnswers){
