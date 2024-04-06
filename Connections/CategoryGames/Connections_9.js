@@ -1,11 +1,11 @@
 const categoryOne = {
-    "Category_Name" : "",
+    "Category_Name" : "Recurring Processes",
     "Color" : "Yellow",
-    "List_of_words" : [""],
+    "List_of_words" : ["Loop" , "Circuit" , "Period", "Circle"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Types of boots",
+    "Category_Name" : "Types of Boots",
     "Color" : "Green",
     "List_of_words" : ["Combat" , "Chelsea" , "Cowboy" , "Hiking"],
 };
@@ -17,7 +17,7 @@ const categoryThree = {
 };
 
 const categoryFour = {
-    "Category_Name" : "",
+    "Category_Name" : "Signs of Fall",
     "Color" : "Purple",
-    "List_of_words" : [""],
+    "List_of_words" : ["Migration", "Harvest" , "Cooler" , "Pumpkin"],
 }

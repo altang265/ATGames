@@ -128,10 +128,6 @@ function completeCategory(color, arrayOfUserAnswers){
         // console.log("Color changed to: " + color);
     };
     deselectAll();
-    if(categoriesLeft == 0){
-        alert("Congrats you got them all!");
-        // TODO Show the results screen
-    }
     //setUpBoard(--categoriesLeft, connectionsWordList);
 }
 // Helper function: Given an array of colors. 
@@ -200,17 +196,16 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         // do something 
     }
     if(livesLeft == 0){
-        document.getElementById('GameContent').style.display = "none";
-        alert("Next Time!! You bad :)");
+        showResults(false);
     }
     // console.log("categories left" + categoriesLeft + "\nsubmission history list length: " + submissionHistoryList + "\nhistory list length: " + historyList );
     if(categoriesLeft == 0){
-        showResults();
+        showResults(true);
     }
 })
 
 // Helper function that shows the history of all the guesses the user made
-function showResults(){
+function showResults(isWin){
     // Hide all the game containers
     document.getElementById('GameContainer').style.display = "none";
     document.getElementById("livesSection").style.display = "none";
@@ -218,6 +213,8 @@ function showResults(){
 
     // Show the results for the game
     document.getElementById("ResultsContainer").style.display = "block";
+    let endGameMsg = (isWin ? "Congratulations!!! You solved it!" : "Wow! You'll get it next time :) Maybe");
+    document.getElementById("EndGameMessage").innerHTML = endGameMsg;
 
     let numRows = submissionHistoryList.length/4;
     let historyIter = 0;
