@@ -1,4 +1,5 @@
 // List of Categories
+// TODO git config remote.origin.prune true
 // TODO Quinections 
 // Each category object should have a name, color for difficulty, four words
 // for the category
