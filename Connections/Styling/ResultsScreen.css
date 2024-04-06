@@ -1,8 +1,8 @@
 #ResultsContainer {
-    margin: 2vh auto;
-    border: 1px solid black;
+    margin: 10vh auto;
+    border: 1px solid blue;
     width: 70%;
-
+    height: 100%;
 }
 
 .ResultsRow{

@@ -126,7 +126,7 @@ function getCategoryInfo(color){
         }
     }
 }
-
+// TODO This replaces the words from the row that gets replaced
 function postCatCompletion(replacementWords){
     let board = document.getElementsByClassName("connectionsRow");
     // Loop through the board and find the 
@@ -166,14 +166,13 @@ function completeCategory(color, arrayOfUserAnswers){
             replacedRowList.push(content.innerHTML);
             content.remove();
         }
-        // TODO Remove all the divs that are inside of the row
         content.remove();
     }
 
     replacedRow.appendChild(divReplacement);
     replacedRow.removeAttribute("class");
     
-    console.log("List for replaced stuff: " + replacedRowList)
+    // console.log("List for replaced stuff: " + replacedRowList)
     for(let card of arrayOfUserAnswers){
         card.style.backgroundColor = color;
         // Remove all the user guesses from the connections word list
@@ -182,6 +181,7 @@ function completeCategory(color, arrayOfUserAnswers){
         // console.log("Color changed to: " + color);
     };
     deselectAll();
+    setUpBoard(categoriesLeft);
     //setUpBoard(--categoriesLeft, connectionsWordList);
 }
 // Helper function: Given an array of colors. 
@@ -305,17 +305,22 @@ function deselectAll(){
 }
 
 document.getElementById("DeselectButton").addEventListener("click", deselectAll);
-
-function setUpBoard(numRows, removeWords){
+document.getElementById("ShuffleButton").addEventListener("click", () => {
+    connectionsWordList = shuffleArray(connectionsWordList);
+    setUpBoard(categoriesLeft)
+})
+function setUpBoard(numRows, removedWords){
     // console.log("number of rows to create: " + numRows);
     let gameContentRows = document.getElementsByClassName("connectionsRow")
     let wordIter = 0;
     // Setup all the clickable tiles 
-    for(let i = 4-categoriesLeft; i < numRows; i++){
+    for(let i = 0; i < numRows; i++){
+        console.log("Length of connections row: " + gameContentRows);
         let buttons  = gameContentRows[i].children;
         for(let j = 0; j < buttons.length; j++){
             let classL = buttons[j].classList;
             classL.add("GameCard");
+            buttons[j].removeAttribute("style");
             buttons[j].addEventListener("click", cardToggleAction);
             buttons[j].innerHTML = connectionsWordList[wordIter++];
         }
