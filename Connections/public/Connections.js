@@ -120,7 +120,24 @@ function removeWord(word){
 // Helper function: When a category is completed then we should trigger the complete animation
 // Parameter: The color of the category that we are making and an array of HTML objects to change
 // TODO Create the complete animation just like the real connections game
+let replacedRowList = [];
 function completeCategory(color, arrayOfUserAnswers){
+    //Store what is in the row it is going to replace
+    let rowIndex = 4-categoriesLeft;
+    console.log("Row Index: " + rowIndex);
+    let replacedRow = document.getElementsByClassName("connectionsRow")[rowIndex].children;
+    
+    for(let content of replacedRow){
+        if(!arrayOfUserAnswers.includes(content)){
+            replacedRowList.push(content.innerHTML);
+        } else {
+            content.remove();
+        }
+    }
+    // Create a single div that says the category name and the list of words
+    let fullCategory = document.createElement("div");
+    
+    console.log("List for replaced stuff: " + replacedRowList)
     for(let card of arrayOfUserAnswers){
         card.style.backgroundColor = color;
         // Remove all the user guesses from the connections word list
@@ -253,18 +270,18 @@ function deselectAll(){
 
 document.getElementById("DeselectButton").addEventListener("click", deselectAll);
 
-function setUpBoard(numRows, wordList){
+function setUpBoard(numRows, removeWords){
     // console.log("number of rows to create: " + numRows);
     let gameContentRows = document.getElementsByClassName("connectionsRow")
     let wordIter = 0;
     // Setup all the clickable tiles 
-    for(let i = 0; i < numRows; i++){
+    for(let i = 4-categoriesLeft; i < numRows; i++){
         let buttons  = gameContentRows[i].children;
         for(let j = 0; j < buttons.length; j++){
             let classL = buttons[j].classList;
             classL.add("GameCard");
             buttons[j].addEventListener("click", cardToggleAction);
-            buttons[j].innerHTML = wordList[wordIter++];
+            buttons[j].innerHTML = connectionsWordList[wordIter++];
         }
     }
     // Setup the other completed categories
@@ -272,7 +289,7 @@ function setUpBoard(numRows, wordList){
 
 connectionsWordList = shuffleArray(connectionsWordList);
 // Initialize the starting board
-setUpBoard(4, connectionsWordList);
+setUpBoard(categoriesLeft);
 
 
 
