@@ -126,16 +126,6 @@ function getCategoryInfo(color){
         }
     }
 }
-// TODO This replaces the words from the row that gets replaced
-function postCatCompletion(replacementWords){
-    let board = document.getElementsByClassName("connectionsRow");
-    // Loop through the board and find the 
-    for(let row of board.children){
-        for(let card of row.children){
-            // 
-        }
-    }
-}
 
 // Helper function: When a category is completed then we should trigger the complete animation
 // Parameter: The color of the category that we are making and an array of HTML objects to change
@@ -159,7 +149,6 @@ function completeCategory(color, arrayOfUserAnswers){
     textForCompDiv.innerHTML = getCategoryInfo(color).List_of_words;
     // console.log("Text to add for the completed category: " + textForCompDiv.innerHTML);
     divReplacement.appendChild(textForCompDiv);
-    console.log("Length of children of row: " + replacedRow.children.length);
     for(let i = replacedRow.children.length-1; i >= 0; i--){
         let content = replacedRow.children[i];
         if(!arrayOfUserAnswers.includes(content)){
@@ -181,9 +170,13 @@ function completeCategory(color, arrayOfUserAnswers){
         // console.log("Color changed to: " + color);
     };
     deselectAll();
-    setUpBoard(categoriesLeft);
-    //setUpBoard(--categoriesLeft, connectionsWordList);
-}
+    setUpBoard(--categoriesLeft);
+    if(livesLeft == 0){
+        showResults(false);
+    }
+    if(categoriesLeft == 0){
+        showResults(true);
+    }}
 // Helper function: Given an array of colors. 
 // Returns 1 if the user is one word away.
 // Returns 0 if the user is zero words away 
@@ -217,7 +210,6 @@ function numWordsAway(inputArray){
     // (For the screen that displays at the end)
     if(dict.includes(4)){
         completeCategory(c, userSelections);
-        categoriesLeft--;
         return {
             "Left" : 0,
             "Color" : c,
@@ -235,6 +227,7 @@ function numWordsAway(inputArray){
 
 // Function that checks to see if the user selected cards match one of the categories
 document.getElementById("SubmitButton").addEventListener("click", () => {
+    if(userSelections.length < 4) return;
     // If they all have the same color then the size should be 1
     let numWords = numWordsAway(userSelections);
     if(numWords == 0){
@@ -248,13 +241,6 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         // TODO Add the shake effect when the user gets it wrong
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
         // do something 
-    }
-    if(livesLeft == 0){
-        showResults(false);
-    }
-    // console.log("categories left" + categoriesLeft + "\nsubmission history list length: " + submissionHistoryList + "\nhistory list length: " + historyList );
-    if(categoriesLeft == 0){
-        showResults(true);
     }
 })
 
@@ -309,14 +295,15 @@ document.getElementById("ShuffleButton").addEventListener("click", () => {
     connectionsWordList = shuffleArray(connectionsWordList);
     setUpBoard(categoriesLeft)
 })
-function setUpBoard(numRows, removedWords){
+function setUpBoard(numRows){
     // console.log("number of rows to create: " + numRows);
     let gameContentRows = document.getElementsByClassName("connectionsRow")
     let wordIter = 0;
+    console.log("Number of rows to create: " + numRows);
     // Setup all the clickable tiles 
     for(let i = 0; i < numRows; i++){
-        console.log("Length of connections row: " + gameContentRows);
         let buttons  = gameContentRows[i].children;
+        console.log("Number of rows: " + numRows + " number of children: " + gameContentRows[i].children.length);
         for(let j = 0; j < buttons.length; j++){
             let classL = buttons[j].classList;
             classL.add("GameCard");

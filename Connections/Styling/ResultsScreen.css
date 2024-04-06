@@ -1,14 +1,15 @@
 #ResultsContainer {
-    margin: 10vh auto;
+    margin: 10px auto;
     border: 1px solid blue;
-    width: 70%;
-    height: 100%;
+    width: 40%;
+    padding: 2vh 5vw;
+    height: auto;
 }
 
 .ResultsRow{
-    margin: 5px auto;
+    margin: 1px auto;
     display: flex;
-    width: 40%;
+    width: 45%;
     /* border: 1px solid black; */
     justify-content: center;
 }
@@ -16,5 +17,5 @@
 .ResultBlock {
     height: 40px;
     width: 40px;
-    margin: 1%;
+    margin: 2px;
 }
