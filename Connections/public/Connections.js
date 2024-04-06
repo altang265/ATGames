@@ -1,5 +1,4 @@
 // List of Categories
-// TODO git config remote.origin.prune true
 // TODO Quinections 
 // Each category object should have a name, color for difficulty, four words
 // for the category
@@ -171,12 +170,10 @@ function completeCategory(color, arrayOfUserAnswers){
     };
     deselectAll();
     setUpBoard(--categoriesLeft);
-    if(livesLeft == 0){
-        showResults(false);
-    }
     if(categoriesLeft == 0){
         showResults(true);
-    }}
+    }
+}
 // Helper function: Given an array of colors. 
 // Returns 1 if the user is one word away.
 // Returns 0 if the user is zero words away 
@@ -228,12 +225,11 @@ function numWordsAway(inputArray){
 // Function that checks to see if the user selected cards match one of the categories
 document.getElementById("SubmitButton").addEventListener("click", () => {
     if(userSelections.length < 4) return;
-    // If they all have the same color then the size should be 1
     let numWords = numWordsAway(userSelections);
+    
+    
     if(numWords == 0){
-        /** TODO Remove the selected card CSS class. Move the four cards to the top row. 
-        Use the set get the color of the category
-        */
+        
     } else if(numWords == 1){
         alert("One Word away...");
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
@@ -241,6 +237,9 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         // TODO Add the shake effect when the user gets it wrong
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
         // do something 
+    }
+    if(livesLeft == 0){
+        showResults(false);
     }
 })
 

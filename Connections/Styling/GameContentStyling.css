@@ -1,7 +1,7 @@
 /* Game Content Area */
 
 #GameContent {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-color: rgb(179, 167, 254);
     text-align: center;
