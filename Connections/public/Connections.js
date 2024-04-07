@@ -292,6 +292,8 @@ function deselectAll(){
 document.getElementById("DeselectButton").addEventListener("click", deselectAll);
 document.getElementById("ShuffleButton").addEventListener("click", () => {
     connectionsWordList = shuffleArray(connectionsWordList);
+    // FIXME Selected cards do not follow the word but the card.
+    deselectAll();
     setUpBoard(categoriesLeft)
 })
 function setUpBoard(numRows){
