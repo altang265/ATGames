@@ -44,8 +44,19 @@ function shuffleArray(inputArray) {
     }
     return outputArray;
 }
-
-// console.log("Shuffled list of words: " + shuffledWordList);
+// Initial time
+let iH;
+let iM;
+let iS;
+let iMS;
+// Helper function that will start the calculation for the start and end of the game
+function setInitialTime(){
+    let time = new Date();
+    iH = time.getHours();
+    iM = time.getMinutes();
+    iS = time.getSeconds();
+    iMS = time.getMilliseconds();
+}
 
 // Play button click event
 const playButton = document.getElementById("button_playButton");
@@ -59,6 +70,8 @@ playButton.addEventListener("click", () => {
     for(let row of rows){
         row.style.display = "flex";
     }
+    setInitialTime();
+    console.log("INit time: " + iH + iM + " Secs: " + iS +" MSecs: "  +iMS);
         // element.style.display = "flex"
     
 }); 
@@ -238,9 +251,50 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         showResults(false);
     }
 })
+// Calculate the time it took to complete the game
+// Returns the time as a string
+function endTime(){
+    let currTime = new Date();
+    let carry = false;
+    // Final - Initial 
+    let ms = currTime.getMilliseconds() - iMS;
+    if(ms < 0) {
+        ms += 1000;
+        carry = true;
+    }
+    let s = currTime.getSeconds();
+    if(carry){
+        carry = false;
+        // Minus 1 due to carry
+        s-= 1;
+        // Test to see if we need to carry 
+        if(s < iS){
+            carry = true;
+            s += 60;
+        }
+    }
+    s -= iS;
+    let m = currTime.getMinutes();
+    if(carry){
+        carry = false;
+        // Minus 1 due to carry
+        m -= 1;
+        // Test to see if we need to carry 
+        if(m < iM){
+            carry = true;
+            s += 60;
+        }
+    }
+    m -= iM;
+    // Going to assume they don't take longer than a day
+    let h = currTime.getHours()- iH;
+    return "Finished in: " + h + ":"+ m + ":" + s + "." + ms;
+}
 
 // Helper function that shows the history of all the guesses the user made
 function showResults(isWin){
+    // Show the timer on the results pop-up
+    document.getElementById("GameTimer").innerHTML = endTime();
     // Allow the user to see the Results button
     document.getElementById("ShowResultsButton").style.display = "block";
 
