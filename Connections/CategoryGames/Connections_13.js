@@ -5,9 +5,9 @@ const categoryOne = {
 };
 
 const categoryTwo = {
-    "Category_Name" : "Popular Noodle Dishes",
+    "Category_Name" : "Things you can tow",
     "Color" : "Green",
-    "List_of_words" : ["Lasagne" , "Ramen" , "Stroganoff" , "Japchae"],
+    "List_of_words" : ["RV" , "Trailer" , "Vehicle" , "Boat"],
 };
 
 const categoryThree = {
