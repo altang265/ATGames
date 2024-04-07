@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "STEM",
+    "Category_Name" : "Opposition",
     "Color" : "Yellow",
-    "List_of_words" : ["Science" , "Technology", "Engineering" , "Math"],
+    "List_of_words" : ["Oppose" , "Anti" , "Against", "Contrary"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Things you can hang",
+    "Category_Name" : "Cardiovascular Activities",
     "Color" : "Green",
-    "List_of_words" : ["Hammock", "Art", "Curtains", "Mirror"],
+    "List_of_words" : ["Run" , "Cycle" , "Swim" , "Row"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Iot Devices",
+    "Category_Name" : "Public Spaces",
     "Color" : "LightBlue",
-    "List_of_words" : ["Thermostat" , "Plug" , "Doorbell" , "Speaker"],
+    "List_of_words" : ["Park" , "Street" , "Library" , "Squares"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Words that end in phone",
+    "Category_Name" : "Blue Collar Jobs",
     "Color" : "Purple",
-    "List_of_words" : ["Smart" , "Pay" , "Cell" , "Head"],
+    "List_of_words" : ["Electric" , "Metal" , "Pipe" , "Wood"],
 }
 
 
