@@ -264,32 +264,35 @@ function endTime(){
         ms += 1000;
         carry = true;
     }
-    let s = currTime.getSeconds();
+    let s = currTime.getSeconds() - iS;
     if(carry){
-        carry = false;
         // Minus 1 due to carry
-        s-= 1;
-        // Test to see if we need to carry 
-        if(s < iS){
-            carry = true;
-            s += 60;
-        }
+        s -= 1;
+        carry=false;  
     }
-    s -= iS;
-    let m = currTime.getMinutes();
+    if(s < iS){
+        s += 60;
+        carry = true;
+    }
+    let m = currTime.getMinutes() - iS;
     if(carry){
-        carry = false;
-        // Minus 1 due to carry
         m -= 1;
-        // Test to see if we need to carry 
-        if(m < iM){
-            carry = true;
-            s += 60;
-        }
+        carry=false;   
     }
-    m -= iM;
+    if(m < iM){
+        s += 60;
+        carry = true;
+    }
     // Going to assume they don't take longer than a day
     let h = currTime.getHours()- iH;
+    if(carry){
+        h -= 1;  
+        carry=false; 
+    }
+    if(h < iH){
+        h += 24;
+        carry = true;
+    }
     return "Finished in: " + h + ":"+ m + ":" + s + "." + ms;
 }
 
