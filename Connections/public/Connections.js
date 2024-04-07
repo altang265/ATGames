@@ -70,10 +70,12 @@ playButton.addEventListener("click", () => {
     for(let row of rows){
         row.style.display = "flex";
     }
-    setInitialTime();
-    console.log("INit time: " + iH + iM + " Secs: " + iS +" MSecs: "  +iMS);
-        // element.style.display = "flex"
     
+    // console.log("INit time: " + iH + iM + " Secs: " + iS +" MSecs: "  +iMS);
+    connectionsWordList = shuffleArray(connectionsWordList);
+    // Initialize the starting board
+    setUpBoard(categoriesLeft);
+    setInitialTime();
 }); 
 // GAME RULES
 // Empty Array to store the user's answers
@@ -373,11 +375,10 @@ function setUpBoard(numRows){
     // console.log("number of rows to create: " + numRows);
     let gameContentRows = document.getElementsByClassName("connectionsRow")
     let wordIter = 0;
-    console.log("Number of rows to create: " + numRows);
+    // console.log("Number of rows to create: " + numRows);
     // Setup all the clickable tiles 
     for(let i = 0; i < numRows; i++){
         let buttons  = gameContentRows[i].children;
-        console.log("Number of rows: " + numRows + " number of children: " + gameContentRows[i].children.length);
         for(let j = 0; j < buttons.length; j++){
             let classL = buttons[j].classList;
             classL.add("GameCard");
@@ -389,9 +390,7 @@ function setUpBoard(numRows){
     // Setup the other completed categories
 }
 
-connectionsWordList = shuffleArray(connectionsWordList);
-// Initialize the starting board
-setUpBoard(categoriesLeft);
+
 
 
 
