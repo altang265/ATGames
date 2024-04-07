@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "Types of Breaks",
+    "Category_Name" : "STEM",
     "Color" : "Yellow",
-    "List_of_words" : ["Lunch" , "Smoke" , "Vacation" , "Coffee"],
+    "List_of_words" : ["Science" , "Technology", "Engineering" , "Math"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Elements of a beat",
+    "Category_Name" : "Things you can hang",
     "Color" : "Green",
-    "List_of_words" : ["Kick" , "Snare" , "Clap" , "Ride"],
+    "List_of_words" : ["Hammock", "Art", "Curtains", "Mirror"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Things you trim",
+    "Category_Name" : "Iot Devices",
     "Color" : "LightBlue",
-    "List_of_words" : ["Grass" , "Hedge" , "Nail" , "Fat"],
+    "List_of_words" : ["Thermostat" , "Plug" , "Doorbell" , "Speaker"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Compound ____",
+    "Category_Name" : "Words that end in phone",
     "Color" : "Purple",
-    "List_of_words" : ["Bow" , "Word" , "Interest" , "Fracture"],
+    "List_of_words" : ["Smart" , "Pay" , "Cell" , "Head"],
 }
 
 
@@ -170,9 +170,7 @@ function completeCategory(color, arrayOfUserAnswers){
     };
     deselectAll();
     setUpBoard(--categoriesLeft);
-    if(categoriesLeft == 0){
-        showResults(true);
-    }
+    
 }
 // Helper function: Given an array of colors. 
 // Returns 1 if the user is one word away.
@@ -226,8 +224,6 @@ function numWordsAway(inputArray){
 document.getElementById("SubmitButton").addEventListener("click", () => {
     if(userSelections.length < 4) return;
     let numWords = numWordsAway(userSelections);
-    
-    
     if(numWords == 0){
         
     } else if(numWords == 1){
@@ -245,10 +241,13 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
 
 // Helper function that shows the history of all the guesses the user made
 function showResults(isWin){
+    // Allow the user to see the Results button
+    document.getElementById("ShowResultsButton").style.display = "block";
+
     // Hide all the game containers
-    document.getElementById('GameContainer').style.display = "none";
-    document.getElementById("livesSection").style.display = "none";
-    document.getElementById("userControlsContainer").style.display = "none";
+    document.getElementById('GameContainer').style.opacity = "50%";
+    document.getElementById("livesSection").style.opacity = "50%";
+    document.getElementById("userControlsContainer").style.opacity = "50%";
 
     // Show the results for the game
     document.getElementById("ResultsContainer").style.display = "block";
@@ -295,8 +294,28 @@ document.getElementById("ShuffleButton").addEventListener("click", () => {
     // FIXME Selected cards do not follow the word but the card.
     deselectAll();
     setUpBoard(categoriesLeft)
-})
+});
+
+// Close the results box if they click the X button
+document.getElementById("CloseResults").addEventListener("click", () => {
+    document.getElementById("ResultsContainer").style.display = "none";
+    document.getElementById('GameContainer').style.opacity = "100%";
+    document.getElementById("livesSection").style.opacity = "100%";
+    document.getElementById("userControlsContainer").style.opacity = "100%";
+});
+
+document.getElementById("ShowResultsButton").addEventListener("click", () => {
+    document.getElementById("ShowResultsButton").style.display = "block";
+    document.getElementById("ResultsContainer").style.display = "block";
+    document.getElementById('GameContainer').style.opacity = "50%";
+    document.getElementById("livesSection").style.opacity = "50%";
+    document.getElementById("userControlsContainer").style.opacity = "50%";
+});
+
 function setUpBoard(numRows){
+    if(categoriesLeft == 0){
+        showResults(true);
+    }
     // console.log("number of rows to create: " + numRows);
     let gameContentRows = document.getElementsByClassName("connectionsRow")
     let wordIter = 0;
