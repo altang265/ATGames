@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "Opposition",
+    "Category_Name" : "Popular Noodle Dishes",
     "Color" : "Yellow",
-    "List_of_words" : ["Oppose" , "Anti" , "Against", "Contrary"],
+    "List_of_words" : ["Lasagne" , "Ramen" , "Stroganoff" , "Japchae"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Cardiovascular Activities",
+    "Category_Name" : "Popular Social Media Platforms",
     "Color" : "Green",
-    "List_of_words" : ["Run" , "Cycle" , "Swim" , "Row"],
+    "List_of_words" : ["book" , "Tube" , "chat" , "cord"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Public Spaces",
+    "Category_Name" : "Google Apps",
     "Color" : "LightBlue",
-    "List_of_words" : ["Park" , "Street" , "Library" , "Squares"],
+    "List_of_words" : ["Drive" , "Maps" , "Search" , "Translate"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Blue Collar Jobs",
+    "Category_Name" : "Types of Insurance",
     "Color" : "Purple",
-    "List_of_words" : ["Electric" , "Metal" , "Pipe" , "Wood"],
+    "List_of_words" : ["Life" , "Auto" , "Home" , "Health"],
 }
 
 
