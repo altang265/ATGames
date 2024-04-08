@@ -56,6 +56,7 @@ function setInitialTime(){
     iM = time.getMinutes();
     iS = time.getSeconds();
     iMS = time.getMilliseconds();
+    console.log("Start Time: " + "H: " + iH + " min: " + iM + " sec: " + iS + " ms: " + iMS);
 }
 
 // Play button click event
@@ -257,6 +258,8 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
 // Returns the time as a string
 function endTime(){
     let currTime = new Date();
+    console.log("Final Time: " + "H: " + currTime.getHours() + " min: " + 
+        currTime.getMinutes() + " sec: " + currTime.getSeconds() + " ms: " + currTime.getMilliseconds());
     let carry = false;
     // Final - Initial 
     let ms = currTime.getMilliseconds() - iMS;
@@ -270,17 +273,17 @@ function endTime(){
         s -= 1;
         carry=false;  
     }
-    if(s < iS){
+    if(s < 0){
         s += 60;
         carry = true;
     }
-    let m = currTime.getMinutes() - iS;
+    let m = currTime.getMinutes() - iM;
     if(carry){
         m -= 1;
         carry=false;   
     }
-    if(m < iM){
-        s += 60;
+    if(m < 0){
+        m += 60;
         carry = true;
     }
     // Going to assume they don't take longer than a day
@@ -289,7 +292,7 @@ function endTime(){
         h -= 1;  
         carry=false; 
     }
-    if(h < iH){
+    if(h < 0){
         h += 24;
         carry = true;
     }
