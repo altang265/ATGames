@@ -7,18 +7,20 @@
 }
 
 #ResultsContainer {
-    margin: 10px auto;
-    border: 1px solid blue;
+    margin: 0 auto;
+    /* border: 1px solid blue; */
     width: 40%;
-    padding: 5vh 5vw;
+    padding: 0 5vw;
     height: auto;
     position: fixed;
     left: 25%;
     right: 25%;
-    top: 30%;
+    top: 15vh;
     z-index: 10;
     opacity: 100%;
-    background-color: aliceblue;
+    background-color: rgb(255, 167, 116);
+    text-align: center;
+    border-radius: 6px;
 }
 
 #CloseResults {
@@ -28,7 +30,17 @@
     right: 3%;
     top: 3%;
     cursor: pointer;
+}
+#EndGameMessage {
+    font-size: 25px;
+    text-align: center;
+}
 
+#GameTimer {
+    font-size: 25px;
+}
+#GuessHistoryContainer {
+    margin: 3% auto;
 }
 
 .ResultsRow{
@@ -44,3 +56,4 @@
     width: 40px;
     margin: 2px;
 }
+

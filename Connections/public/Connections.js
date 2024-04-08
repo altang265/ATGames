@@ -253,7 +253,16 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
     if(livesLeft == 0){
         showResults(false);
     }
-})
+});
+
+// Makes sure the output has some zeros to fill in the gaps
+function formatTime(value){
+    if(value < 10)
+        return "0" + value;
+    return value; 
+}
+
+
 // Calculate the time it took to complete the game
 // Returns the time as a string
 function endTime(){
@@ -296,7 +305,7 @@ function endTime(){
         h += 24;
         carry = true;
     }
-    return "Finished in: " + h + ":"+ m + ":" + s + "." + ms;
+    return "Finished in: " + formatTime(h) + ":" + formatTime(m) + ":" + formatTime(s) + "." + ms;
 }
 
 // Helper function that shows the history of all the guesses the user made
