@@ -85,6 +85,7 @@ let livesLeft = 4;
 let categoriesLeft = categoryList.length;
 const submissionHistoryList = [];
 let numOfGuesses = 0;
+let isContinuation = false;
 
 // User clicks on one of the buttons
 function cardToggleAction(){
@@ -258,7 +259,9 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
     }
 });
 
+
 document.getElementById("TryAgainButton").addEventListener("click", () => {
+    isContinuation = true;
     // Resetting the users lives
     livesLeft = 4;
     document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
@@ -267,7 +270,7 @@ document.getElementById("TryAgainButton").addEventListener("click", () => {
     document.getElementById("livesSection").style.opacity = "100%";
     document.getElementById("userControlsContainer").style.opacity = "100%";
     document.getElementById("ShowResultsButton").style.display = "none";
-})
+});
 
 // Makes sure the output has some zeros to fill in the gaps
 function formatTime(value){
@@ -323,12 +326,43 @@ function endTime(){
 
 // Helper function that saves the userGuessHistory to localStorage
 function saveToLocalStorage(userHistory){
-    let history = localStorage.getItem("UserGuessHistory");
-    localStorage.setItem();
+    // Check to see if there has already been guesses made
+    let key = localStorage.getItem("UserSave");
+    let dateObject = new Date();
+    let date = "Date: " + dateObject.getMonth() + dateObject.getDate() + dateObject.getFullYear();
+    // If there is there is a save but the date doesn't 
+    // match then we have a brand new game
+    let save;
+    if(!key || (key && (key).Date != date)){
+        // create a new save if there isn't a save OR 
+        // there is a key but the dates don't match
+        console.log("Created a new save");
+        save = {
+            "Date" : date, 
+            "UserGuessHistoryList" : userHistory, 
+        }
+        
+    }else {
+        console.log("Updating a save");
+        // We are continuing a previous game because there is a key
+        let parsedObject = JSON.parse(key);
+        let oldList = parsedObject.UserGuessHistoryList;  // Datatype: Array
+        console.log("Old list: " + parsedObject.UserGuessHistoryList);
+        let dataToSave = oldList.concat(submissionHistoryList);
+        save = {
+            "Date" : date, 
+            "UserGuessHistoryList" : dataToSave, 
+        }
+    }
+    console.log("Save object: " + save.Date + " \n History:\n" + save.UserGuessHistoryList);
+    // Create the save in the localstorage
+    localStorage.setItem("UserSave" , JSON.stringify(save));
 }
 
 // Helper function that shows the history of all the guesses the user made
 function showResults(isWin){
+    saveToLocalStorage(submissionHistoryList);
+    document.getElementById("TryAgainButton").style.display = "none";
     // Show the timer on the results pop-up
     document.getElementById("GameTimer").innerHTML = endTime();
     // Allow the user to see the Results button
@@ -346,6 +380,10 @@ function showResults(isWin){
 
     let numRows = submissionHistoryList.length/4;
     let historyIter = 0;
+
+    // If this is a continuation of a game then we need to clear the results container
+    // to make room for the other rows
+    document.getElementById("GuessHistoryContainer").replaceChildren();
     
     // TODO Create a history that is stored in the localStorage
     // Create a row for every submission the user made throughout the game
@@ -367,7 +405,7 @@ function showResults(isWin){
         document.getElementById("GuessHistoryContainer").appendChild(row);
         // alert("Congrats you got them all!");
     }
-
+    
 }
 
 // Function for deselecting all the cards picked by the user
