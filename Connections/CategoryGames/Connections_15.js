@@ -7,7 +7,7 @@ const categoryOne = {
 const categoryTwo = {
     "Category_Name" : "Popular Social Media Platforms",
     "Color" : "Green",
-    "List_of_words" : ["book" , "Tube" , "chat" , "cord"],
+    "List_of_words" : ["Book" , "Tube" , "Chat" , "Cord"],
 };
 
 const categoryThree = {

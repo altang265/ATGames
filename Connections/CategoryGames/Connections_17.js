@@ -19,5 +19,5 @@ const categoryThree = {
 const categoryFour = {
     "Category_Name" : "Micro-",
     "Color" : "Purple",
-    "List_of_words" : ["Chip" , "Fiber" , "Nutrients" , "Greens"],
+    "List_of_words" : ["Chips" , "Fibers" , "Nutrients" , "Greens"],
 }
