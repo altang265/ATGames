@@ -421,8 +421,9 @@ document.getElementById("DeselectButton").addEventListener("click", deselectAll)
 document.getElementById("ShuffleButton").addEventListener("click", () => {
     connectionsWordList = shuffleArray(connectionsWordList);
     // FIXME Selected cards do not follow the word but the card.
-    deselectAll();
-    setUpBoard(categoriesLeft)
+    // deselectAll();
+    setUpBoard(categoriesLeft);
+    reHighlight();
 });
 
 // Close the results box if they click the X button
@@ -440,6 +441,22 @@ document.getElementById("ShowResultsButton").addEventListener("click", () => {
     document.getElementById("livesSection").style.opacity = "50%";
     document.getElementById("userControlsContainer").style.opacity = "50%";
 });
+
+function reHighlight(){
+    let gameContentRows = document.getElementsByClassName("connectionsRow");
+    for(let i = 0; i < categoriesLeft; i++){
+        let buttons  = gameContentRows[i].children;
+        for(let j = 0; j < buttons.length; j++){
+            console.log("Comparing: " + buttons[j].innerHTML + " and \n" + 
+                userSelections);
+            if(userSelections.includes(buttons[j].innerHTML)){
+                let classL = buttons[j].classList;
+                classL.add("selected_card");
+                console.log("Rehighlighted: " + buttons[j].innerHTML);
+            }
+        }
+    }
+}
 
 function setUpBoard(numRows){
     if(categoriesLeft == 0){
