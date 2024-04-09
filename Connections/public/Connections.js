@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "Pizza Ingredients",
+    "Category_Name" : "Things that contain caffeine",
     "Color" : "Yellow",
-    "List_of_words" : ["Dough" , "Sauce" , "Cheese" , "Pepperoni"],
+    "List_of_words" : ["Coffee" , "Chocolate" , "Tea" , "Cola"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Money",
+    "Category_Name" : "Chocolate bar flavors",
     "Color" : "Green",
-    "List_of_words" : ["Bread" , "Moolah" , "Bucks" , "Cash"],
+    "List_of_words" : ["Orange" , "Mint" , "Caramel" , "Chili"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Deli",
+    "Category_Name" : "Gummy Varieties",
     "Color" : "LightBlue",
-    "List_of_words" : ["Bologna" , "Turkey" , "Roast beef" , "Pastrami"],
+    "List_of_words" : ["Peaches" , "Sharks" , "Bottles" , "Vitamins"],
 };
 
 const categoryFour = {
-    "Category_Name" : "-room",
+    "Category_Name" : "Micro-",
     "Color" : "Purple",
-    "List_of_words" : ["Bath" , "Bed" , "Ball" , "Living"],
+    "List_of_words" : ["Chip" , "Fiber" , "Nutrients" , "Greens"],
 }
 
 

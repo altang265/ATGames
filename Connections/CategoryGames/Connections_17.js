@@ -13,11 +13,11 @@ const categoryTwo = {
 const categoryThree = {
     "Category_Name" : "Gummy Varieties",
     "Color" : "LightBlue",
-    "List_of_words" : [""],
+    "List_of_words" : ["Peaches" , "Sharks" , "Bottles" , "Vitamins"],
 };
 
 const categoryFour = {
-    "Category_Name" : "",
+    "Category_Name" : "Micro-",
     "Color" : "Purple",
-    "List_of_words" : [""],
+    "List_of_words" : ["Chip" , "Fiber" , "Nutrients" , "Greens"],
 }
