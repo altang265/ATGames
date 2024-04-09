@@ -1,7 +1,7 @@
 const categoryOne = {
-    "Category_Name" : "Things that contain caffeine",
+    "Category_Name" : "Painting equipment",
     "Color" : "Yellow",
-    "List_of_words" : ["Coffee" , "Chocolate" , "Tea" , "Cola"],
+    "List_of_words" : ["Tarp", "Brushes" , "Palette" , "Tape"],
 };
 
 const categoryTwo = {
