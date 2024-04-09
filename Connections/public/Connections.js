@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "Things that contain caffeine",
+    "Category_Name" : "Burger Companies",
     "Color" : "Yellow",
-    "List_of_words" : ["Coffee" , "Chocolate" , "Tea" , "Cola"],
+    "List_of_words" : ["King", "Guys" , "Shack" , "Burger"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Chocolate bar flavors",
+    "Category_Name" : "Greatest Scientific Minds",
     "Color" : "Green",
-    "List_of_words" : ["Orange" , "Mint" , "Caramel" , "Chili"],
+    "List_of_words" : ["Galileo", "Nikola", "Marie", "Albert"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Gummy Varieties",
+    "Category_Name" : "Famous Actors of 2023",
     "Color" : "LightBlue",
-    "List_of_words" : ["Peaches" , "Sharks" , "Bottles" , "Vitamins"],
+    "List_of_words" : ["Pascal", "Winstead", "Armas", "Ortega"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Micro-",
+    "Category_Name" : "Ben and Jerry's Ice cream",
     "Color" : "Purple",
-    "List_of_words" : ["Chips" , "Fibers" , "Nutrients" , "Greens"],
+    "List_of_words" : ["Garcia" , "Monkey", "Food" , "Cheesecake"],
 }
 
 
@@ -84,6 +84,7 @@ let userSelections = [];
 let livesLeft = 4;
 let categoriesLeft = categoryList.length;
 const submissionHistoryList = [];
+let numOfGuesses = 0;
 
 // User clicks on one of the buttons
 function cardToggleAction(){
@@ -238,10 +239,11 @@ function numWordsAway(inputArray){
 
 // Function that checks to see if the user selected cards match one of the categories
 document.getElementById("SubmitButton").addEventListener("click", () => {
-    if(userSelections.length < 4) return;
+    if(userSelections.length < 4 || livesLeft == 0) return;
     let numWords = numWordsAway(userSelections);
+    numOfGuesses++;
     if(numWords == 0){
-        
+        // FIXME Make sure I am doing nothing here
     } else if(numWords == 1){
         alert("One Word away...");
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
@@ -252,8 +254,20 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
     }
     if(livesLeft == 0){
         showResults(false);
+        document.getElementById("TryAgainButton").style.display = "block";
     }
 });
+
+document.getElementById("TryAgainButton").addEventListener("click", () => {
+    // Resetting the users lives
+    livesLeft = 4;
+    document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
+    document.getElementById("ResultsContainer").style.display = "none";
+    document.getElementById('GameContainer').style.opacity = "100%";
+    document.getElementById("livesSection").style.opacity = "100%";
+    document.getElementById("userControlsContainer").style.opacity = "100%";
+    document.getElementById("ShowResultsButton").style.display = "none";
+})
 
 // Makes sure the output has some zeros to fill in the gaps
 function formatTime(value){
@@ -261,7 +275,6 @@ function formatTime(value){
         return "0" + value;
     return value; 
 }
-
 
 // Calculate the time it took to complete the game
 // Returns the time as a string
@@ -308,6 +321,12 @@ function endTime(){
     return "Finished in: " + formatTime(h) + ":" + formatTime(m) + ":" + formatTime(s) + "." + ms;
 }
 
+// Helper function that saves the userGuessHistory to localStorage
+function saveToLocalStorage(userHistory){
+    let history = localStorage.getItem("UserGuessHistory");
+    localStorage.setItem();
+}
+
 // Helper function that shows the history of all the guesses the user made
 function showResults(isWin){
     // Show the timer on the results pop-up
@@ -348,6 +367,7 @@ function showResults(isWin){
         document.getElementById("GuessHistoryContainer").appendChild(row);
         // alert("Congrats you got them all!");
     }
+
 }
 
 // Function for deselecting all the cards picked by the user
