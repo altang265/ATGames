@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "Burger Companies",
+    "Category_Name" : "Marvel Character Weapons",
     "Color" : "Yellow",
-    "List_of_words" : ["King", "Guys" , "Shack" , "Burger"],
+    "List_of_words" : ["Web" , "Hammer" , "Shield" , "Armor"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Greatest Scientific Minds",
+    "Category_Name" : "Types of views",
     "Color" : "Green",
-    "List_of_words" : ["Galileo", "Nikola", "Marie", "Albert"],
+    "List_of_words" : ["Street" , "Interior" , "Wide" , "Aerial"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Famous Actors of 2023",
+    "Category_Name" : "Projectiles for guns",
     "Color" : "LightBlue",
-    "List_of_words" : ["Pascal", "Winstead", "Armas", "Ortega"],
+    "List_of_words" : ["Water" , "Foam" , "Paint" , "Pellet"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Ben and Jerry's Ice cream",
+    "Category_Name" : "Types of warfare",
     "Color" : "Purple",
-    "List_of_words" : ["Garcia" , "Monkey", "Food" , "Cheesecake"],
+    "List_of_words" : ["Naval" , "Urban" , "Cyber" , "Chemical"],
 }
 
 
