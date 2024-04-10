@@ -401,8 +401,12 @@ function showResults(isWin){
 
 // Function for deselecting all the cards picked by the user
 function deselectAll(){
-    for(let card of userSelections){
-        card.classList.toggle("selected_card");
+    let connRows = document.getElementsByClassName("connectionsRow");
+    for(let row of connRows){
+        for(let card of row.children){
+            if(card.classList.contains("selected_card"))
+                card.classList.toggle("selected_card");
+        }
     }
     userSelections.splice(0, userSelections.length);
     // console.log(userSelections + "check to see if empty");
@@ -450,7 +454,6 @@ function setUpBoard(){
     for(let cat of completedCats){
         container.appendChild(cat);
     }
-    console.log(userSelections);
     let wordIter = 0;
     // Setup all the clickable tiles 
     for(let i = 0; i < categoriesLeft; i++){
