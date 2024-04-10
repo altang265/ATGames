@@ -86,6 +86,7 @@ let categoriesLeft = categoryList.length;
 const submissionHistoryList = [];
 let numOfGuesses = 0;
 let isContinuation = false;
+let completedCats = [];
 
 // User clicks on one of the buttons
 function cardToggleAction(){
@@ -136,7 +137,7 @@ function removeWord(word){
 
 // Helper function that returns the category name according to color provided
 // Returns Category Object 
-function getCategoryInfo(color){
+function getCategoryColor(color){
     for(let cat of categoryList){
         if((cat.Color == color)){
             return cat;
@@ -155,30 +156,21 @@ function completeCategory(color, arrayOfUserAnswers){
     let replacedRow = document.getElementsByClassName("connectionsRow")[0];
     let divReplacement = document.createElement("div");
     divReplacement.setAttribute("class" , "completedCategory");
-    divReplacement.style.backgroundColor = getCategoryInfo(color).Color;
+    divReplacement.style.backgroundColor = getCategoryColor(color).Color;
     // Create a header for the category name 
     let completedCatHeader = document.createElement("h3");
     // The header should hold the category name according the color that was completed
-    completedCatHeader.innerHTML = getCategoryInfo(color).Category_Name;
+    completedCatHeader.innerHTML = getCategoryColor(color).Category_Name;
     // Add the header to the div that will 
     divReplacement.appendChild(completedCatHeader);
     let textForCompDiv = document.createElement("p");
-    textForCompDiv.innerHTML = getCategoryInfo(color).List_of_words;
+    textForCompDiv.innerHTML = getCategoryColor(color).List_of_words;
     // console.log("Text to add for the completed category: " + textForCompDiv.innerHTML);
     divReplacement.appendChild(textForCompDiv);
-    for(let i = replacedRow.children.length-1; i >= 0; i--){
-        let content = replacedRow.children[i];
-        if(!arrayOfUserAnswers.includes(content)){
-            replacedRowList.push(content.innerHTML);
-            content.remove();
-        }
-        content.remove();
-    }
-
-    replacedRow.appendChild(divReplacement);
     replacedRow.removeAttribute("class");
+    // replacedRow.appendChild(divReplacement);
+    completedCats.push(divReplacement);
     
-    // console.log("List for replaced stuff: " + replacedRowList)
     for(let card of arrayOfUserAnswers){
         card.style.backgroundColor = color;
         // Remove all the user guesses from the connections word list
@@ -187,8 +179,8 @@ function completeCategory(color, arrayOfUserAnswers){
         // console.log("Color changed to: " + color);
     };
     deselectAll();
-    setUpBoard(--categoriesLeft);
-    
+    --categoriesLeft
+    setUpBoard();
 }
 // Helper function: Given an array of colors. 
 // Returns 1 if the user is one word away.
@@ -403,7 +395,6 @@ function showResults(isWin){
         }
         // Add the row of colors into the container
         document.getElementById("GuessHistoryContainer").appendChild(row);
-        // alert("Congrats you got them all!");
     }
     
 }
@@ -420,10 +411,7 @@ function deselectAll(){
 document.getElementById("DeselectButton").addEventListener("click", deselectAll);
 document.getElementById("ShuffleButton").addEventListener("click", () => {
     connectionsWordList = shuffleArray(connectionsWordList);
-    // FIXME Selected cards do not follow the word but the card.
-    // deselectAll();
-    setUpBoard(categoriesLeft);
-    reHighlight();
+    setUpBoard();
 });
 
 // Close the results box if they click the X button
@@ -442,45 +430,47 @@ document.getElementById("ShowResultsButton").addEventListener("click", () => {
     document.getElementById("userControlsContainer").style.opacity = "50%";
 });
 
-function reHighlight(){
-    let gameContentRows = document.getElementsByClassName("connectionsRow");
-    for(let i = 0; i < categoriesLeft; i++){
-        let buttons  = gameContentRows[i].children;
-        for(let j = 0; j < buttons.length; j++){
-            console.log("Comparing: " + buttons[j].innerHTML + " and \n" + 
-                userSelections);
-            if(userSelections.includes(buttons[j].innerHTML)){
-                let classL = buttons[j].classList;
-                classL.add("selected_card");
-                console.log("Rehighlighted: " + buttons[j].innerHTML);
-            }
-        }
+// Helper function Basically an includes() function for my userSelections array
+function inSelected(word){
+    for(let card of userSelections){
+        if(card.innerHTML == word)
+            return true;
     }
+    return false;
 }
 
-function setUpBoard(numRows){
+function setUpBoard(){
     if(categoriesLeft == 0){
         showResults(true);
     }
-    // console.log("number of rows to create: " + numRows);
-    let gameContentRows = document.getElementsByClassName("connectionsRow")
-    let wordIter = 0;
-    // console.log("Number of rows to create: " + numRows);
-    // Setup all the clickable tiles 
-    for(let i = 0; i < numRows; i++){
-        let buttons  = gameContentRows[i].children;
-        for(let j = 0; j < buttons.length; j++){
-            let classL = buttons[j].classList;
-            classL.add("GameCard");
-            buttons[j].removeAttribute("style");
-            buttons[j].addEventListener("click", cardToggleAction);
-            buttons[j].innerHTML = connectionsWordList[wordIter++];
-        }
+    // Empty the Container for new buttons
+    let container = document.getElementById("GameContainer");
+    container.replaceChildren();
+    // Add the completed categories first
+    for(let cat of completedCats){
+        container.appendChild(cat);
     }
-    // Setup the other completed categories
+    console.log(userSelections);
+    let wordIter = 0;
+    // Setup all the clickable tiles 
+    for(let i = 0; i < categoriesLeft; i++){
+        row = document.createElement("div");
+        row.setAttribute("class", "connectionsRow");
+        row.setAttribute("style" , "display: flex;");
+        for(let j = 0; j < 4; j++){
+            let card = document.createElement("div");
+            card.addEventListener("click", cardToggleAction);
+            let text = connectionsWordList[wordIter++];
+            card.innerHTML = text;
+            card.setAttribute("class", "GameCard");
+            if(inSelected(text)){
+                card.classList.toggle("selected_card")
+            }
+            
+            row.appendChild(card);
+        }
+        // Add the row of colors into the container
+        document.getElementById("GameContainer").appendChild(row);
+    }
 }
-
-
-
-
 
