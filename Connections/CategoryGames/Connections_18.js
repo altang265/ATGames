@@ -1,7 +1,7 @@
 const categoryOne = {
-    "Category_Name" : "Life's Balances",
+    "Category_Name" : "Getting a Job",
     "Color" : "Yellow",
-    "List_of_words" : ["Finance" , "Diet" , "Tech" , "Time"],
+    "List_of_words" : ["Network" , "Apply" , "Offer" , "Onboard"],
 };
 
 const categoryTwo = {
@@ -17,7 +17,7 @@ const categoryThree = {
 };
 
 const categoryFour = {
-    "Category_Name" : "Getting a Job",
+    "Category_Name" : "Life's Balances",
     "Color" : "Purple",
-    "List_of_words" : ["Network" , "Apply" , "Offer" , "Onboard"],
+    "List_of_words" : ["Finance" , "Diet" , "Tech" , "Time"],
 }
