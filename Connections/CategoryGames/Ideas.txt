@@ -6,7 +6,7 @@ Category + word list:
 	- Crunchy/Crisp
 
 - Painting equipment
-	"Tarp", "Brushes" , "Palette" , "Tape"
+	"Tarp", "Brushes" , "Palette" , "Masking"
 - Safety Equipment
 	"Harness" , "Gloves" , "Goggles" , "Mask"
 
@@ -35,7 +35,6 @@ Category + word list:
 	- Challenges
 	- Goals
 	- Addictions
-	- Insecurities
 	
 - Addictions
 	- Substance
@@ -70,3 +69,20 @@ Category + word list:
 	- Valve
 	- Outlet
 	- Nozzle 
+
+- Popular Gaming Companies
+	- Infinity Ward
+	- Valve
+	- Blizzard
+	- Epic
+	- Square
+	- CD
+	- Respawn
+	- Riot
+
+- Data Storage devices
+	- Compact (CD)
+	- Solid-State
+	- Hard Drive
+	- Cloud
+	- Tape

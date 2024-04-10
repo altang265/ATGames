@@ -1,7 +1,7 @@
 /* Title Header Section */
 #GameTitleHeader {
     padding-top: 5px;
-    padding-bottom: 1%;
+    /* padding-bottom: 1%; */
     height: 100px;
 }
 
@@ -14,4 +14,21 @@
     margin-left: 15%;  
     margin-right: 20px;
     font-size: 35px;
+}
+
+#GameTitleScreen {
+    min-height: 100%;
+}
+
+.Difficulty {
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    text-decoration: none;
+    padding: 20px 30px;
+    /* background-color: darkcyan; */
+    /* color: white; */
+    margin: 15px 7px;
+    line-height: 0;
 }

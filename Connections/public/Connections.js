@@ -26,10 +26,53 @@ const categoryFour = {
     "List_of_words" : ["Naval" , "Urban" , "Cyber" , "Chemical"],
 }
 
+const easyCategoryOne = {
+    "Category_Name" : "Types of views",
+    "Color" : "Yellow",
+    "List_of_words" : ["Street" , "Interior" , "Panoramic" , "Aerial"],
+};
 
-const categoryList = [categoryOne, categoryTwo, categoryThree, categoryFour];
-let connectionsWordList = categoryOne.List_of_words.concat(categoryTwo.List_of_words, categoryThree.List_of_words, categoryFour.List_of_words);
-// console.log("Here is the list of words for all the categories " + connectionsWordList.toString());
+const easyCategoryTwo = {
+    "Category_Name" : "Marvel Character Weapons",
+    "Color" : "Green",
+    "List_of_words" : ["Missile" , "Foam" , "Paintball" , "BB"],
+};
+
+const easyCategoryThree = {
+    "Category_Name" : "Projectiles for guns",
+    "Color" : "LightBlue",
+    "List_of_words" : ["Web" , "Hammer" , "Shield" , "Armor"],
+};
+
+const easyCategoryFour = {
+    "Category_Name" : "Types of warfare",
+    "Color" : "Purple",
+    "List_of_words" : ["Naval" , "Urban" , "Cyber" , "Chemical"],
+}
+
+// Moved yellow to lightblue
+// Changed green list of words 
+// Changed wide to Panoramic
+let connectionsWordList;
+let categoryList;
+const hardCategoryList = [categoryOne, categoryTwo, categoryThree, categoryFour];
+const easyCategoryList = [
+    easyCategoryOne , easyCategoryTwo ,
+    easyCategoryThree , easyCategoryFour
+];
+let diffSelectionValue;
+function setupWordList(){
+    diffSelectionValue = document.getElementById("DifficultySelection").value;
+    
+    
+    categoryList = (diffSelectionValue == "Hard" ? hardCategoryList : easyCategoryList);
+    console.log(categoryList);
+    connectionsWordList = [];
+    for(let i = 0; i < categoryList.length; i++){
+        connectionsWordList = connectionsWordList.concat(categoryList[i].List_of_words);
+    }
+    console.log("Here is the list of words for all the categories " + connectionsWordList.toString());
+}
 
 // Randomize all the categories and their words 
 function shuffleArray(inputArray) {
@@ -62,18 +105,22 @@ function setInitialTime(){
 // Play button click event
 const playButton = document.getElementById("button_playButton");
 playButton.addEventListener("click", () => {
+    
     document.getElementById("GameTitleScreen").style.display = "none";
     document.getElementById("livesSection").style.display = "block";
     document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
     document.getElementById("userControlsContainer").style.display = "block";
     document.getElementById("GameContainer").style.display = "flex";
-    let rows = document.getElementsByClassName("connectionsRow");
-    for(let row of rows){
-        row.style.display = "flex";
-    }
-    
+    // let rows = document.getElementsByClassName("connectionsRow");
+    // for(let row of rows){
+    //     row.style.display = "flex";
+    // }
+    setupWordList();
     // console.log("INit time: " + iH + iM + " Secs: " + iS +" MSecs: "  +iMS);
-    connectionsWordList = shuffleArray(connectionsWordList);
+    let shuffleNum = 5;
+    while(shuffleNum--){
+        connectionsWordList = shuffleArray(connectionsWordList);
+    }
     // Initialize the starting board
     setUpBoard(categoriesLeft);
     setInitialTime();
@@ -82,7 +129,7 @@ playButton.addEventListener("click", () => {
 // Empty Array to store the user's answers
 let userSelections = [];
 let livesLeft = 4;
-let categoriesLeft = categoryList.length;
+let categoriesLeft = 4;
 const submissionHistoryList = [];
 let numOfGuesses = 0;
 let isContinuation = false;
@@ -367,7 +414,11 @@ function showResults(isWin){
 
     // Show the results for the game
     document.getElementById("ResultsContainer").style.display = "block";
-    let endGameMsg = (isWin ? "Congratulations!!! You solved it!" : "Wow! You'll get it next time :) Maybe");
+    let endGameMsg = (isWin ? "Congratulations!!!" : "Wow! You'll get it next time :) Maybe");
+    if(isWin){
+        endGameMsg += "<br>You did it in: " + numOfGuesses + 
+        " guesses. <br> On " + diffSelectionValue + " difficulty."
+    }
     document.getElementById("EndGameMessage").innerHTML = endGameMsg;
 
     let numRows = submissionHistoryList.length/4;
