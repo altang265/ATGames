@@ -1,0 +1,23 @@
+/* Start Screen */
+#GameContent {
+    background-color: #e3e3e1;
+    height: 100vh;
+
+}
+#StartScreen {
+    padding: 25vh;
+    text-align: center;
+
+}
+
+#PlayButton {
+    background-color: black;
+    color: white;
+    padding: 13px 50px;
+    border-radius: 25px;
+
+}
+
+#DateSpan {
+    margin-top: 30px;
+}
