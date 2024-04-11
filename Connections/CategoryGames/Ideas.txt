@@ -35,6 +35,34 @@ Category + word list:
 	- Challenges
 	- Goals
 	- Addictions
+
+- Types of Tape
+	- Barricade 
+	- Scotch
+	- Cellophane
+	- Cloth
+	- Decorative
+	- Duct
+	- Electrical
+	- Grip
+	- Mounting
+	- Packaging 
+
+- Blockages
+	- Clot
+	- Mucus
+	- Censor 
+	- Strikes
+
+- Regulated
+	- Labor
+	- Trade
+	- Health
+	- Housing
+	- Education
+	- Consumer
+	- Environment
+	- Communication
 	
 - Addictions
 	- Substance
@@ -80,9 +108,18 @@ Category + word list:
 	- Respawn
 	- Riot
 
-- Data Storage devices
+- Data Storage Devices
 	- Compact (CD)
 	- Solid-State
 	- Hard Drive
 	- Cloud
 	- Tape
+	"Compact" , "Tape" , "Cloud" , "Solid"
+
+- Electromagnetic Waves
+	- Micro
+	- Radio
+	- Visible
+	- Gamma
+	"Micro" , "Radio" , "Visible" , "Gamma"
+
