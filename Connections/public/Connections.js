@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "Marvel Character Weapons",
+    "Category_Name" : "Strive to conquer/overcome",
     "Color" : "Yellow",
-    "List_of_words" : ["Web" , "Hammer" , "Shield" , "Armor"],
+    "List_of_words" : ["Fear" , "Challenges" , "Goals" , "Addiction"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Types of views",
+    "Category_Name" : "Abuse",
     "Color" : "Green",
-    "List_of_words" : ["Street" , "Interior" , "Wide" , "Aerial"],
+    "List_of_words" : ["Substance" , "Domestic" , "Elder" , "Social"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Projectiles for guns",
+    "Category_Name" : "Regulated",
     "Color" : "LightBlue",
-    "List_of_words" : ["Water" , "Foam" , "Paint" , "Pellet"],
+    "List_of_words" : ["Labor" , "Trade" , "Housing" , "Consumer"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Types of warfare",
+    "Category_Name" : "Types of Blockages",
     "Color" : "Purple",
-    "List_of_words" : ["Naval" , "Urban" , "Cyber" , "Chemical"],
+    "List_of_words" : ["Clot" , "Traffic" , "Censor" , "Strike"],
 }
 
 
