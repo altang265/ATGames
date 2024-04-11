@@ -3,27 +3,27 @@
 // Each category object should have a name, color for difficulty, four words
 // for the category
 const categoryOne = {
-    "Category_Name" : "Strive to conquer/overcome",
+    "Category_Name" : "Getting a Job",
     "Color" : "Yellow",
-    "List_of_words" : ["Fear" , "Challenges" , "Goals" , "Addiction"],
+    "List_of_words" : ["Network" , "Apply" , "Offer" , "Onboard"],
 };
 
 const categoryTwo = {
-    "Category_Name" : "Abuse",
+    "Category_Name" : "Ways of gathering information",
     "Color" : "Green",
-    "List_of_words" : ["Substance" , "Domestic" , "Elder" , "Social"],
+    "List_of_words" : ["Survey" , "Observe" , "Experiment" , "Interview"],
 };
 
 const categoryThree = {
-    "Category_Name" : "Regulated",
+    "Category_Name" : "Crime Scene Evidence",
     "Color" : "LightBlue",
-    "List_of_words" : ["Labor" , "Trade" , "Housing" , "Consumer"],
+    "List_of_words" : ["Biological" , "Physical" , "Digital" , "Belongings"],
 };
 
 const categoryFour = {
-    "Category_Name" : "Types of Blockages",
+    "Category_Name" : "Life's Balances",
     "Color" : "Purple",
-    "List_of_words" : ["Clot" , "Traffic" , "Censor" , "Strike"],
+    "List_of_words" : ["Finance" , "Diet" , "Tech" , "Time"],
 }
 
 
