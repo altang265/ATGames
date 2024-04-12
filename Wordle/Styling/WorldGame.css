@@ -1,0 +1,48 @@
+.blackLayout {
+    background-color: #121213;
+    color: #f8f8f8;
+    text-align: center;
+}
+
+#GameGridContainer {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    /* border: 1px solid white; */
+}
+
+#KeyboardContainer {
+    width: fit-content;
+    margin: 10px auto;
+    height: fit-content;
+    border: 1px solid white;
+    align-items: center;
+}
+
+.GameGridRow {
+    display: flex;
+}
+
+/* TODO Get the coloring of the boxes */
+.inputBox {
+    border: 3px solid rgb(79, 78, 78);
+    margin: 3px;
+    color: #f8f8f8; 
+    background-color: #121213;
+    height: 50px;
+    width: 50px;
+}
+
+.letterBox {
+    color: white;
+    background-color: rgb(151, 167, 182);
+    border-radius: 5px;
+    height: 40px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+}
