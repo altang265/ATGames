@@ -11,6 +11,7 @@ console.log(chosenWord);
 let userSubmissionsList = [];
 let userInputList = [];
 let guessesLeft = 6;
+let isWon = false;
     
 // Keypress events
 document.addEventListener("keydown", (e) => {
@@ -20,7 +21,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 function keyPressed(key){
-    if(!keyboardKeys.includes(key) && key != "BACKSPACE") return;
+    if(!keyboardKeys.includes(key) && key != "BACKSPACE" || isWon) return;
     if(key == "BACKSPACE" && userInputList.length > 0){
         addLetterToBoard(key, userInputList.length-1);
         userInputList.pop();
@@ -81,7 +82,6 @@ function checkSubmission(word){
     // Check if word is in word list
     if(!wordList.includes(word)){
         // Alert the user the word is not in the word list
-        
         return false;
     }
     for(let i in word){
@@ -94,7 +94,12 @@ function checkSubmission(word){
         else if(!chosenWord.includes(word[i])){
             // Leave the background as is
             // Remove the letter from the keyboard 
-            removeKey(word[i]);
+            let letters = document.getElementsByClassName("letterBox");
+            for(let l of letters){
+                if(l.innerHTML == word[i]){
+                    l.style.backgroundColor = "#3a3a3c";
+                }
+            }
         }
         // We know that the letter is in the word from this point forward
         // Current letter is in the word (Yellow) 
@@ -106,20 +111,12 @@ function checkSubmission(word){
     return true;
 }
 
-function kbPress(keyToAdd) {
-    console.log("Keyboard pressed: " + keyToAdd);
-    if(keyToAdd != "DELETE")
-        keyPressed(keyToAdd);
-    else 
-        keyPressed("BACKSPACE");
-}
-
 function setupGameBoard(){
     // Create the grid for the letters to be entered
     //  Dimensions: 6 Rows 5 Columns 
     let gridContainer = document.getElementById("GameGridContainer");
     let gridRow;
-    for(let i = 0; i < 7; i++){
+    for(let i = 0; i < 6; i++){
         gridRow = document.createElement("div");
         gridRow.setAttribute("class" , "GameGridRow");
         for(let j = 0; j < 5; j++){
@@ -144,7 +141,13 @@ function setupGameBoard(){
             letterBox.setAttribute("style" , "width: fit-content");
         letterBox.innerHTML = keyToAdd;
         // Allow the user to click on the keyboard
-        letterBox.addEventListener("click" , helperKbPress.bind(null, keyToAdd));
+        letterBox.addEventListener("click" , () => {
+            console.log("Keyboard pressed: " + keyToAdd);
+            if(keyToAdd != "DELETE")
+                keyPressed(keyToAdd);
+            else 
+                keyPressed("BACKSPACE");
+        });
         keyGridRow.appendChild(letterBox);
         keyGridRow.setAttribute("class" , "GameGridRow");
         if(i == 9 || i == 18 || i == 27){
@@ -152,22 +155,6 @@ function setupGameBoard(){
         }
         
     }
-}
-
-function helperKbPress(keyToAdd){
-    kbPress(keyToAdd);
-}
-
-function removeKey(letter){
-    let letters = document.getElementsByClassName("letterBox");
-    for(let l of letters){
-        if(l.innerHTML == letter){
-            console.log("removed event listener for: " + l.innerHTML);
-            l.style.backgroundColor == "gray";
-            l.removeEventListener("click", helperKbPress);
-        }
-    }
-
 }
 
 function showBoard(){
