@@ -2,11 +2,12 @@ const keyboardKeys = ["Q", "W" , "E" , "R" , "T" , "Y" , "U", "I" , "O" , "P" ,
     "A" , "S" , "D" , "F" , "G" , "H" , "J" , "K", "L" , "ENTER" , "Z" , "X" , "C" , "V" ,
     "B" , "N" , "M" , "DELETE"];
 
-const wordList = ["HELLO" , "RIGHT" , "LIGHT" , "PATCH" , "TABLE" , "REACH" 
-, "LEECH" , "LATCH" , "PEACH"];
-// let chosenWord = Math.floor(Math.random() * wordList.length); 
+import { wordList } from "./WordList.js";
+
+let chosenWord = wordList[Math.floor(Math.random() * wordList.length)]; 
+console.log(chosenWord);
 // Make sure everything is in uppercase
-let chosenWord = "HELLO";
+// let chosenWord = "HELLO";
 let userSubmissionsList = [];
 let userInputList = [];
 let guessesLeft = 6;
