@@ -1,0 +1,2 @@
+let wordList = [];
+let file
