@@ -72,6 +72,8 @@ function tileColorChange(color , indexOfLetter){
     lettersInRow[indexOfLetter].style.color = "Black";
 }
 
+
+
 // Function that checks the user submission against the word of the day
 // Returns TRUE if the word is in the wordlist
 // Returns FALSE if the word is not in the wordlist
@@ -91,6 +93,8 @@ function checkSubmission(word){
         // Current letter is not in the word at all
         else if(!chosenWord.includes(word[i])){
             // Leave the background as is
+            // Remove the letter from the keyboard 
+            removeKey(word[i]);
         }
         // We know that the letter is in the word from this point forward
         // Current letter is in the word (Yellow) 
@@ -100,6 +104,14 @@ function checkSubmission(word){
         }
     }
     return true;
+}
+
+function kbPress(keyToAdd) {
+    console.log("Keyboard pressed: " + keyToAdd);
+    if(keyToAdd != "DELETE")
+        keyPressed(keyToAdd);
+    else 
+        keyPressed("BACKSPACE");
 }
 
 function setupGameBoard(){
@@ -132,13 +144,7 @@ function setupGameBoard(){
             letterBox.setAttribute("style" , "width: fit-content");
         letterBox.innerHTML = keyToAdd;
         // Allow the user to click on the keyboard
-        letterBox.addEventListener("click" , () => {
-            console.log("Keyboard pressed: " + keyToAdd);
-            if(keyToAdd != "DELETE")
-                keyPressed(keyToAdd);
-            else 
-                keyPressed("BACKSPACE");
-        });
+        letterBox.addEventListener("click" , helperKbPress.bind(null, keyToAdd));
         keyGridRow.appendChild(letterBox);
         keyGridRow.setAttribute("class" , "GameGridRow");
         if(i == 9 || i == 18 || i == 27){
@@ -146,6 +152,22 @@ function setupGameBoard(){
         }
         
     }
+}
+
+function helperKbPress(keyToAdd){
+    kbPress(keyToAdd);
+}
+
+function removeKey(letter){
+    let letters = document.getElementsByClassName("letterBox");
+    for(let l of letters){
+        if(l.innerHTML == letter){
+            console.log("removed event listener for: " + l.innerHTML);
+            l.style.backgroundColor == "gray";
+            l.removeEventListener("click", helperKbPress);
+        }
+    }
+
 }
 
 function showBoard(){
