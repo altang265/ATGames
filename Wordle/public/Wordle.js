@@ -89,6 +89,9 @@ function checkSubmission(word){
         if(word[i] == chosenWord[i]){
             // Turn the tile green
             tileColorChange("Green" , i);
+            let charIndex = keyboardKeys.indexOf(word[i]);
+            let kb = document.getElementsByClassName("letterBox");
+            kb[charIndex].style.backgroundColor = "Green";
         }
         // Current letter is not in the word at all
         else if(!chosenWord.includes(word[i])){
@@ -106,6 +109,9 @@ function checkSubmission(word){
         else{
             // Turn the tile yellow
             tileColorChange("Yellow" , i);
+            let charIndex = keyboardKeys.indexOf(word[i]);
+            let kb = document.getElementsByClassName("letterBox");
+            kb[charIndex].style.backgroundColor = "Lightyellow";
         }
     }
     return true;
