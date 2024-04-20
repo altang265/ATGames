@@ -2,70 +2,48 @@
 // TODO Quinections 
 // Each category object should have a name, color for difficulty, four words
 // for the category
-const categoryOne = {
-    "Category_Name" : "Getting a Job",
-    "Color" : "Yellow",
-    "List_of_words" : ["Network" , "Apply" , "Offer" , "Onboard"],
-};
 
-const categoryTwo = {
-    "Category_Name" : "Ways of gathering information",
-    "Color" : "Green",
-    "List_of_words" : ["Survey" , "Observe" , "Experiment" , "Interview"],
-};
+import { HardConnections } from "../CategoryGames/HardDifficulty/HardGames.js";
+import { EasyConnections } from "../CategoryGames/EasyDifficulty/EasyGames.js";
+import { MediumConnections } from "../CategoryGames/MediumDifficulty/MediumGames.js";
 
-const categoryThree = {
-    "Category_Name" : "Crime Scene Evidence",
-    "Color" : "LightBlue",
-    "List_of_words" : ["Biological" , "Physical" , "Digital" , "Belongings"],
-};
 
-const categoryFour = {
-    "Category_Name" : "Life's Balances",
-    "Color" : "Purple",
-    "List_of_words" : ["Finance" , "Diet" , "Tech" , "Time"],
+let difficultyConnectionsList;
+document.getElementById("DifficultySelection").addEventListener("change", () => {
+    let gameNumberSelection = document.getElementById("GameNumberSelection");
+    gameNumberSelection.replaceChildren();
+    let diffSelectionValue = document.getElementById("DifficultySelection").value;
+    if(diffSelectionValue == "Hard")
+        difficultyConnectionsList = HardConnections;
+    else if(diffSelectionValue == "Medium")
+        difficultyConnectionsList = MediumConnections;
+    else 
+        difficultyConnectionsList = EasyConnections;
+    for(let game of difficultyConnectionsList){
+        let row = document.createElement("option");
+        row.setAttribute("value", game.Number);
+        row.innerHTML = game.Number;
+        gameNumberSelection.appendChild(row);
+    }
+    gameNumberSelection.style.display = "block";
+});
+
+function getConnectionsGame(UserSelectedNumber, arrayOfConnections){
+    for(let category of arrayOfConnections){
+        if(category.Number == UserSelectedNumber)
+            return category.List_of_Categories;
+    }
 }
-
-const easyCategoryOne = {
-    "Category_Name" : "Types of views",
-    "Color" : "Yellow",
-    "List_of_words" : ["Street" , "Interior" , "Panoramic" , "Aerial"],
-};
-
-const easyCategoryTwo = {
-    "Category_Name" : "Marvel Character Weapons",
-    "Color" : "Green",
-    "List_of_words" : ["Missile" , "Foam" , "Paintball" , "BB"],
-};
-
-const easyCategoryThree = {
-    "Category_Name" : "Projectiles for guns",
-    "Color" : "LightBlue",
-    "List_of_words" : ["Web" , "Hammer" , "Shield" , "Armor"],
-};
-
-const easyCategoryFour = {
-    "Category_Name" : "Types of warfare",
-    "Color" : "Purple",
-    "List_of_words" : ["Naval" , "Urban" , "Cyber" , "Chemical"],
-}
-
 // Moved yellow to lightblue
 // Changed green list of words 
 // Changed wide to Panoramic
 let connectionsWordList;
-let categoryList;
-const hardCategoryList = [categoryOne, categoryTwo, categoryThree, categoryFour];
-const easyCategoryList = [
-    easyCategoryOne , easyCategoryTwo ,
-    easyCategoryThree , easyCategoryFour
-];
 let diffSelectionValue;
+let categoryList;
 function setupWordList(){
-    diffSelectionValue = document.getElementById("DifficultySelection").value;
-    
-    
-    categoryList = (diffSelectionValue == "Hard" ? hardCategoryList : easyCategoryList);
+    let selectedGameNumber = document.getElementById("GameNumberSelection").value;
+    console.log("The number they selected: " + selectedGameNumber);
+    categoryList = getConnectionsGame(selectedGameNumber, difficultyConnectionsList);
     console.log(categoryList);
     connectionsWordList = [];
     for(let i = 0; i < categoryList.length; i++){
@@ -506,6 +484,7 @@ function setUpBoard(){
         container.appendChild(cat);
     }
     let wordIter = 0;
+    let row;
     // Setup all the clickable tiles 
     for(let i = 0; i < categoriesLeft; i++){
         row = document.createElement("div");

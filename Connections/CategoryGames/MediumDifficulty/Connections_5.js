@@ -22,3 +22,9 @@ const categoryFour = {
     "List_of_words" : ["Poker" , "Chocolate" , "Potato" , "Memory"],
 };
 
+export const ConnectionsGame = {
+    "Number" : 5,
+    "Difficulty" : "Medium",
+    "List_of_Categories" : [categoryOne, categoryTwo, categoryThree, categoryFour],
+}
+

@@ -21,3 +21,9 @@ const categoryFour = {
     "Color" : "Purple",
     "List_of_words" : ["Garcia" , "Monkey", "Food" , "Cheesecake"],
 }
+
+export const ConnectionsGame = {
+    "Number" : 1,
+    "Difficulty" : "Medium",
+    "List_of_Categories" : [categoryOne, categoryTwo, categoryThree, categoryFour],
+}
