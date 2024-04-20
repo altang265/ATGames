@@ -1,18 +1,19 @@
 // List of Categories
-// TODO Quinections 
-// Each category object should have a name, color for difficulty, four words
-// for the category
-
-import { HardConnections } from "../CategoryGames/HardDifficulty/HardGames.js";
-import { EasyConnections } from "../CategoryGames/EasyDifficulty/EasyGames.js";
-import { MediumConnections } from "../CategoryGames/MediumDifficulty/MediumGames.js";
-
+import { HardConnections } from "../CategoryGames/Archive/HardDifficulty/HardGames.js";
+import { EasyConnections } from "../CategoryGames/Archive/EasyDifficulty/EasyGames.js";
+import { MediumConnections } from "../CategoryGames/Archive/MediumDifficulty/MediumGames.js";
+import { ConnectionsGame as TodaysConnection } from "../CategoryGames/DailyConnection.js";
 
 let difficultyConnectionsList;
+
 document.getElementById("DifficultySelection").addEventListener("change", () => {
     let gameNumberSelection = document.getElementById("GameNumberSelection");
     gameNumberSelection.replaceChildren();
     let diffSelectionValue = document.getElementById("DifficultySelection").value;
+    if(diffSelectionValue == "Default"){
+        gameNumberSelection.style.display = "none";
+        return;
+    }
     if(diffSelectionValue == "Hard")
         difficultyConnectionsList = HardConnections;
     else if(diffSelectionValue == "Medium")
@@ -39,12 +40,18 @@ function getConnectionsGame(UserSelectedNumber, arrayOfConnections){
 // Changed wide to Panoramic
 let connectionsWordList;
 let diffSelectionValue;
-let categoryList;
+let categoryList; // Should be an array with four categories
 function setupWordList(){
-    let selectedGameNumber = document.getElementById("GameNumberSelection").value;
-    console.log("The number they selected: " + selectedGameNumber);
-    categoryList = getConnectionsGame(selectedGameNumber, difficultyConnectionsList);
-    console.log(categoryList);
+    let diffSelectionValue = document.getElementById("DifficultySelection").value;
+    if(diffSelectionValue != "Default") {
+        let selectedGameNumber = document.getElementById("GameNumberSelection").value;
+        console.log("The number they selected: " + selectedGameNumber);
+        categoryList = getConnectionsGame(selectedGameNumber, difficultyConnectionsList);
+        console.log(categoryList);
+    } else {
+        categoryList = TodaysConnection.List_of_Categories;
+    }
+    
     connectionsWordList = [];
     for(let i = 0; i < categoryList.length; i++){
         connectionsWordList = connectionsWordList.concat(categoryList[i].List_of_words);
@@ -393,9 +400,12 @@ function showResults(isWin){
     // Show the results for the game
     document.getElementById("ResultsContainer").style.display = "block";
     let endGameMsg = (isWin ? "Congratulations!!!" : "Wow! You'll get it next time :) Maybe");
-    if(isWin){
+    if(isWin && diffSelectionValue != "Default"){
         endGameMsg += "<br>You did it in: " + numOfGuesses + 
         " guesses. <br> On " + diffSelectionValue + " difficulty."
+    } else {
+        endGameMsg += "<br>You did it in: " + numOfGuesses + 
+        " guesses."
     }
     document.getElementById("EndGameMessage").innerHTML = endGameMsg;
 

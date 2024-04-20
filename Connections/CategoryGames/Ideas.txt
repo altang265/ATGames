@@ -30,12 +30,6 @@ Category + word list:
 	- Freshener
 	- Incense
 
-- Strive to conquer/overcome
-	- Fears
-	- Challenges
-	- Goals
-	- Addictions
-
 - Types of Tape
 	- Barricade 
 	- Scotch
@@ -48,21 +42,6 @@ Category + word list:
 	- Mounting
 	- Packaging 
 
-- Blockages
-	- Clot
-	- Mucus
-	- Censor 
-	- Strikes
-
-- Regulated
-	- Labor
-	- Trade
-	- Health
-	- Housing
-	- Education
-	- Consumer
-	- Environment
-	- Communication
 	
 - Addictions
 	- Substance

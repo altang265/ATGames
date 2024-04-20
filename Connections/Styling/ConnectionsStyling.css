@@ -35,4 +35,8 @@
 
 #GameNumberSelection {
     margin: 0 auto;
+    width: fit-content;
+    border-radius: 6px;
+    border: none;
+    
 }
