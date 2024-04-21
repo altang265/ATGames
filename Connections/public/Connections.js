@@ -4,8 +4,8 @@ import { EasyConnections } from "../CategoryGames/Archive/EasyDifficulty/EasyGam
 import { MediumConnections } from "../CategoryGames/Archive/MediumDifficulty/MediumGames.js";
 import { ConnectionsGame as TodaysConnection } from "../CategoryGames/DailyConnection.js";
 
-let difficultyConnectionsList;
 
+let difficultyConnectionsList;
 document.getElementById("DifficultySelection").addEventListener("change", () => {
     let gameNumberSelection = document.getElementById("GameNumberSelection");
     gameNumberSelection.replaceChildren();
@@ -30,33 +30,32 @@ document.getElementById("DifficultySelection").addEventListener("change", () => 
 });
 
 function getConnectionsGame(UserSelectedNumber, arrayOfConnections){
-    for(let category of arrayOfConnections){
-        if(category.Number == UserSelectedNumber)
-            return category.List_of_Categories;
+    for(let Game of arrayOfConnections){
+        if(Game.Number == UserSelectedNumber)
+            return Game;
     }
 }
-// Moved yellow to lightblue
-// Changed green list of words 
-// Changed wide to Panoramic
+
+let currentGame;
 let connectionsWordList;
 let diffSelectionValue;
 let categoryList; // Should be an array with four categories
 function setupWordList(){
-    let diffSelectionValue = document.getElementById("DifficultySelection").value;
+    diffSelectionValue = document.getElementById("DifficultySelection").value;
     if(diffSelectionValue != "Default") {
         let selectedGameNumber = document.getElementById("GameNumberSelection").value;
         console.log("The number they selected: " + selectedGameNumber);
-        categoryList = getConnectionsGame(selectedGameNumber, difficultyConnectionsList);
+        categoryList = getConnectionsGame(selectedGameNumber, difficultyConnectionsList).List_of_Categories;
         console.log(categoryList);
     } else {
-        categoryList = TodaysConnection.List_of_Categories;
+        currentGame = TodaysConnection;
+        categoryList = currentGame.List_of_Categories;
     }
     
     connectionsWordList = [];
     for(let i = 0; i < categoryList.length; i++){
         connectionsWordList = connectionsWordList.concat(categoryList[i].List_of_words);
     }
-    console.log("Here is the list of words for all the categories " + connectionsWordList.toString());
 }
 
 // Randomize all the categories and their words 
@@ -266,7 +265,7 @@ function numWordsAway(inputArray){
 document.getElementById("SubmitButton").addEventListener("click", () => {
     if(userSelections.length < 4 || livesLeft == 0) return;
     let numWords = numWordsAway(userSelections);
-    numOfGuesses++;
+    ++numOfGuesses;
     if(numWords == 0){
         // FIXME Make sure I am doing nothing here
     } else if(numWords == 1){
@@ -401,10 +400,10 @@ function showResults(isWin){
     document.getElementById("ResultsContainer").style.display = "block";
     let endGameMsg = (isWin ? "Congratulations!!!" : "Wow! You'll get it next time :) Maybe");
     if(isWin && diffSelectionValue != "Default"){
-        endGameMsg += "<br>You did it in: " + numOfGuesses + 
+        endGameMsg += "<br>You completed Connections #" + currentGame.Number + " in: " + numOfGuesses + 
         " guesses. <br> On " + diffSelectionValue + " difficulty."
     } else {
-        endGameMsg += "<br>You did it in: " + numOfGuesses + 
+        endGameMsg += "<br>You completed today's connections.<br>You did it in: " + numOfGuesses + 
         " guesses."
     }
     document.getElementById("EndGameMessage").innerHTML = endGameMsg;
@@ -415,7 +414,7 @@ function showResults(isWin){
     // If this is a continuation of a game then we need to clear the results container
     // to make room for the other rows
     document.getElementById("GuessHistoryContainer").replaceChildren();
-    
+    let row;
     // TODO Create a history that is stored in the localStorage
     // Create a row for every submission the user made throughout the game
     for(let i = 1; i <= numRows; i++){
