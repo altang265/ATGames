@@ -45,7 +45,8 @@ function setupWordList(){
     if(diffSelectionValue != "Default") {
         let selectedGameNumber = document.getElementById("GameNumberSelection").value;
         console.log("The number they selected: " + selectedGameNumber);
-        categoryList = getConnectionsGame(selectedGameNumber, difficultyConnectionsList).List_of_Categories;
+        currentGame = getConnectionsGame(selectedGameNumber, difficultyConnectionsList);
+        categoryList = currentGame.List_of_Categories
         console.log(categoryList);
     } else {
         currentGame = TodaysConnection;
