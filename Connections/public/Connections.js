@@ -399,16 +399,7 @@ function showResults(isWin){
 
     // Show the results for the game
     document.getElementById("ResultsContainer").style.display = "block";
-    let endGameMsg = (isWin ? "Congratulations!!!" : "Wow! You'll get it next time :) Maybe");
-    if(isWin && diffSelectionValue != "Default"){
-        endGameMsg += "<br>You completed Connections #" + currentGame.Number + " in: " + numOfGuesses + 
-        " guesses. <br> On " + diffSelectionValue + " difficulty."
-    } else {
-        endGameMsg += "<br>You completed today's connections.<br>You did it in: " + numOfGuesses + 
-        " guesses."
-    }
-    document.getElementById("EndGameMessage").innerHTML = endGameMsg;
-
+    
     let numRows = submissionHistoryList.length/4;
     let historyIter = 0;
 
@@ -435,7 +426,20 @@ function showResults(isWin){
         // Add the row of colors into the container
         document.getElementById("GuessHistoryContainer").appendChild(row);
     }
-    
+    let endGameMsg = (isWin ? "Congratulations!!!" : "Wow! You'll get it next time :) Maybe");
+    if(!isWin){
+        document.getElementById("EndGameMessage").innerHTML = endGameMsg;
+        return;
+    }
+
+    if(isWin && diffSelectionValue != "Default"){
+        endGameMsg += "<br>You completed Connections #" + currentGame.Number + " in: " + ++numOfGuesses + 
+        " guesses. <br> On " + diffSelectionValue + " difficulty."
+    } else {
+        endGameMsg += "<br>You completed today's connections.<br>You did it in: " + ++numOfGuesses + 
+        " guesses."
+    }
+    document.getElementById("EndGameMessage").innerHTML = endGameMsg;
 }
 
 // Function for deselecting all the cards picked by the user
