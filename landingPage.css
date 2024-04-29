@@ -1,0 +1,26 @@
+body {
+    font-size: 18px;
+}
+
+#BannerSection {
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+#ContentSection {
+    text-align: center;
+}
+
+#ContentSection > a {
+    padding: 2vh 4vw;
+    margin: 10px auto;
+    display:inline-block;
+    font-size: 1.5rem;
+    text-decoration-line: none;
+    color: inherit;
+    width: 20%;
+}
+
+#ContentSection > a:hover{
+    background-color: lightskyblue;
+}
