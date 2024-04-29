@@ -1,0 +1,39 @@
+AT Monopoly
+
+**Setting up the game**
+Four user objects (Player token for each)
+- 2-4 Players
+	- $1500 Dollars
+- 1 Banker
+
+Two Six sided die
+32 Houses
+12 Hotels
+28 Deed cards
+
+1 Board 
+- 40 tile Object(0-39)
+	- Tile Object
+		- Tile name (i.e. Boardwalk, States Avenue)
+		- Event that occurs when landed on
+		~ Property (Both Railroads, companies, and normal property)
+			- Price
+			- Color at the top
+		~ Wild Card
+			- Goto jail, Just visiting, free parking, Go & collect
+		~ Taxes
+			- Income Tax
+			- Luxury Tax
+- Two wild card piles
+	- Community chest (16 Cards in total)
+		- Index #s: 2, 16, 33, 
+	- Chance (16 Cards in total)
+		- Index #s: 7, 22, 36
+		
+**Game Loop**
+Start
+- All Players roll a dice to decide the order of play (From highest to lowest)
+
+- Events 
+	- Wild Card event (Picking a card from the community chest or chance pile)
+	- Landing on a property 
