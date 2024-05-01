@@ -33,7 +33,77 @@ Two Six sided die
 **Game Loop**
 Start
 - All Players roll a dice to decide the order of play (From highest to lowest)
+	- If player rolls a double they get to roll again
+	- On the third double, they are sent to jail right away
+- Purchasing property
+- Landing on a property
+	- If UNOWNED, player is allowed to purchase the property for 
+	 the listed Price
+	- If UNOWNED & player does not want to purchase, the property is
+	 up for auction
+	- If owned, the player that lands on it pays the rent amount
+	 listed on the card
+	- If owned but mortgaged, the player does not have to pay the owner
+- Passing go or landing on GO will award that player $200
 
 - Events 
 	- Wild Card event (Picking a card from the community chest or chance pile)
+		- Follow the instructions and place the card at the bottom of the pile
+		- A player may keep the card if it is a "Get out of jail free" card
+			- A player may sell this card to another player for a price that 
+			is mutually agreed upon
 	- Landing on a property 
+	- Landing on income Tax
+		- Decide between paying $200 or
+		- Paying 10% of total worth 
+		- **This decision must be made before calculating total worth**
+	- jail
+		- Do not pass GO
+		- You can still buy and sell property when you are in jail
+		- A player may leave when:
+			- Throw a double in the next three turns
+				- On a successful throw, the player gets to move that amount
+				- If not successful on third attempt, the player must pay 
+				 the $50 fine and moves according to the dice they threw
+			- Using a "Get out of jail free" card
+			- Pay a $50 fine
+	- Free parking
+		- Nothing happens
+	- Purchasing Housing
+		- Must have complete color set
+		- You must build evenly
+			- You may buy and erect at any time 
+			 as many houses as your judgement and financial standing will 
+			 allow. But you must build evenly, i.e., you cannot erect more 
+			 than one house on any one property of any color-group until 
+			 you have built one house on every property of that group. You
+			 may then begin on the second row of houses, and so on, up to 
+			 a limit of four houses to a property.
+	- Purchasing Hotels
+		- Must have four houses on a property
+		- Pay the amount listed for a hotel and return the four houses to 
+		 the Banker
+	- Selling Property
+		- Can sell unimproved properties, Railroads, and utilities
+		- You must sell evenly (just like building evenly)
+		- Houses and hotels are sold for half the price they paid for
+	- Mortgage Property
+		- unimproved properties can be mortgaged at anytime
+		- (You can Mortgage a improved property if you sell all buildings
+		 back to the bank (See selling property section))
+		- To lift the mortgage, the player must pay the mortgage amount plus 
+		 10% interest.
+		- When all properties of the same color are no longer mortgaged, 
+		 the player is allowed to buy housing 
+		- A player is allowed to sell mortgaged property to another player
+		 at a mutually agreed upon price.
+		 	- At time of sale, the buyer may lift the mortgage or choose to 
+			 lift it in the future but you must pay the bank 10% interest. 
+			 (You will still need to pay the 10% interest later if you wish
+			  to lift the mortgage)
+	- Bankruptcy
+		- You must declare Bankruptcy when you owe more than you can pay
+			- If to another player, you must turn over everything you own
+				- You must liquidate all properties (Same rules apply)
+			- If to the bank, you must turn over all assets to the bank
+				- The bank immediately sells all property via auction

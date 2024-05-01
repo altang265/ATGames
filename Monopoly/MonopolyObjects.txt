@@ -1,0 +1,24 @@
+User
+    - Player # (2-8) (Integer)
+    - PlayerColor (String) (hexcode)
+    - Cash Amount (Integer)
+    - Total Worth (Integer)
+    - List of properties/deeds (Deed[])
+    - PlayerToken (String)
+    - isJailed (Boolean)
+    - isBanker (Boolean)
+    - hasGetOutOfJailFreeCard (Boolean)
+
+Tile
+    - Name (String)
+    - GroupColor (String)
+    - Event (function())
+
+Token (TODO)
+    - Type (String) (i.e. House, Hotel, wildcard, Property Deed, etc)
+    - Image of the object
+Game Board
+    - List of players (User[])
+    - Chance Pile (Token[])
+    - Community Pile (Token[])
+    - 
