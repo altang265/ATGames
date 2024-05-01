@@ -14,11 +14,39 @@ Tile
     - GroupColor (String)
     - Event (function())
 
-Token (TODO)
-    - Type (String) (i.e. House, Hotel, wildcard, Property Deed, etc)
-    - Image of the object
+Game Objects (TODO)
+    - Housing
+        - Type 
+            - House
+            - Hotel
+    - Card
+        - Type (String)
+            - Deed
+                - Color (String)
+                - Property Name (String)
+                - Rent (Integer)
+                    - Double Rent Amount (Integer)
+                    - Rent + 1 house (Integer)
+                    - Rent + 2 House (Integer)
+                    - Rent + 3 House (Integer)
+                    - Rent + 4 House (Integer)
+                    - Rent + 1 Hotel (Integer)
+                - House Cost (Integer)
+                - Hotel Cost (Integer)
+                - Mortgage Value (Integer)
+                - isMortgaged (Boolean)
+            - Wild Card
+                - Community or Chance (String)
+                - Effect (Function())
+                    - Teleport to X
+                    - Get paid
+                    - Pay money to X
+                    - Get out of jail free
+                    https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
 Game Board
     - List of players (User[])
     - Chance Pile (Token[])
     - Community Pile (Token[])
-    - 
+    - List of tiles (Tiles[])
+    - Turn Count (Integer)
+    - Random Number generator (2-12)
