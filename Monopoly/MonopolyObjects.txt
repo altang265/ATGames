@@ -1,70 +1,83 @@
 User
     - Player # (2-8) (Integer)
     - PlayerColor (String) (hexcode)
-    - Cash Amount (Integer)
-    - Total Worth (Integer)
+    - totalCash (Integer)
+    - netWorth (Integer)
     - List of properties/deeds (Deed[])
     - PlayerToken (String)
     - isJailed (Boolean)
     - isBanker (Boolean)
     - hasGetOutOfJailFreeCard (Boolean)
+    - isRetired (Boolean)
 
 Tile
     - Name (String)
-    - GroupColor (String)
+    - Type (String)
     - Event (function())
 
-Game Objects (TODO)
+Game Equipment (TODO)
     - Housing
         - Type 
             - House
             - Hotel
-    - Card
-        - Type (String)
-            - Deed
-                - Color (String)
-                - Property Name (String)
-                - Rent (Integer)
-                    - Double Rent Amount (Integer)
-                    - Rent + 1 house (Integer)
-                    - Rent + 2 House (Integer)
-                    - Rent + 3 House (Integer)
-                    - Rent + 4 House (Integer)
-                    - Rent + 1 Hotel (Integer)
-                - House Cost (Integer)
-                - Hotel Cost (Integer)
-                - Mortgage Value (Integer)
-                - isMortgaged (Boolean)
-            - Wild Card
-                - Community or Chance (String)
-                - Effect (Function())
-                    - Teleport to X
-                    - Get paid
-                    - Pay money to X
-                    - Get out of jail free
-                    https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
-Game Board
+        - (TODO) Image
+    - Property
+        - Property Name (String)
+        - Property Cost (Integer)
+        - RentBreakdown (int[])
+        - isMortgaged (Boolean)
+        - Mortgage Value (Integer)
+        ^ Deed (^Child)
+            - Color (String)
+            - Rent Amounts(Integer)
+                - Double Rent Amount (Integer)
+                - Rent + 1 house (Integer)
+                - Rent + 2 House (Integer)
+                - Rent + 3 House (Integer)
+                - Rent + 4 House (Integer)
+                - Rent + 1 Hotel (Integer)
+            - House Cost (Integer)
+            - Hotel Cost (Integer)
+            - numOfHouses (Integer)
+            - calculateRent (Integer)
+        ^ Companies (^Child)
+            - calculateRent (Integer) 
+        ^ RailRoads (^Child)  
+            - calculateRent (Integer)   
+    Wild Card
+        - Community or Chance (String)
+        - Effect (Function())
+            - Teleport to X
+            - Get paid
+            - Pay money to X
+            - Get out of jail free
+            https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
+        
+GameBoard
     - List of players (User[])
-    - Chance Pile (Token[])
-    - Community Pile (Token[])
-    - List of tiles (Tiles[])
+    - Chance Pile (Card[])
+    - Community Pile (Card[])
+    - List of tiles (Tile[])
+    - List of properties (Property[])
     - Turn Count (Integer)
     - Random Number generator (2-12) (Integer)
 
-MonopolyEventHandler
+MonopolyEventHandler (All Static methods)
     **General Events**
-    - MovePlayer(User, numSteps)
-    - goToJail(User)
+    - MovePlayer(Board, User, numSteps)
+    - goToJail(Board, User)
     - transferMoney(source, destination, amount) // This can be positive or negative
+    // Your total worth is all your cash on hand, printed prices of mortgaged 
+    // and un-mortgaged properties and cost price of all buildings you own.
+    - incomeTax(payingPercent: boolean, user)
     ** Auction **
     - auctionDeed(deed, ...user)
     ** Landing on Property **
     // Returns T/F if the user that landed on the tile is the owner
     - deedOwnedByUser(user, propertyName)
+    - payRent(Renter, Owner, deed)
     ** Purchasing & Selling Property **
     - purchaseDeed(Buyer, Seller, Deed, Price)
-    - mortgageDeed(Deed, )
-
-
-
-    
+    - mortgageDeed(Deed, user)
+    - purchaseHouse(Deed, user)
+        - purchaseEvenCheck(deed, user)
