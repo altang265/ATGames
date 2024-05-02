@@ -84,7 +84,7 @@ Start
 		- Pay the amount listed for a hotel and return the four houses to 
 		 the Banker
 	- Selling Property
-		- Can sell unimproved properties, Railroads, and utilities
+		- Can sell unimproved properties, Railroads, and utilities to other players as private transaction
 		- You must sell evenly (just like building evenly)
 		- Houses and hotels are sold for half the price they paid for
 	- Mortgage Property

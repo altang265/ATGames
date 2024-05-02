@@ -49,4 +49,22 @@ Game Board
     - Community Pile (Token[])
     - List of tiles (Tiles[])
     - Turn Count (Integer)
-    - Random Number generator (2-12)
+    - Random Number generator (2-12) (Integer)
+
+MonopolyEventHandler
+    **General Events**
+    - MovePlayer(User, numSteps)
+    - goToJail(User)
+    - transferMoney(source, destination, amount) // This can be positive or negative
+    ** Auction **
+    - auctionDeed(deed, ...user)
+    ** Landing on Property **
+    // Returns T/F if the user that landed on the tile is the owner
+    - deedOwnedByUser(user, propertyName)
+    ** Purchasing & Selling Property **
+    - purchaseDeed(Buyer, Seller, Deed, Price)
+    - mortgageDeed(Deed, )
+
+
+
+    
