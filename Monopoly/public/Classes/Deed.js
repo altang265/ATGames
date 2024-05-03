@@ -10,9 +10,8 @@
 *    rentWithHotel]
 */
 class Deed extends Property {
-    constructor(propertyName, propertyCost, rent,groupName, color, houseCost, hotelCost){
+    constructor(propertyName, propertyCost, rent, groupName, houseCost, hotelCost){
         super(propertyName, propertyCost, rent, groupName);
-        this._color = color;
         this._houseCost = houseCost;
         this._hotelCost = hotelCost;
         this._numOfHouses = 0;

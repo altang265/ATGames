@@ -21,13 +21,4 @@ class Property {
     setOwner(newOwner) {
         this._owner = newOwner;
     }
-
-    static getPropertyByName(NameOfProperty, list){
-        for(let prop of list){
-            if(prop._propertyName === NameOfProperty)
-                return prop;
-        }
-        return -1;
-    }
-
 }

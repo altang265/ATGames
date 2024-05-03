@@ -1,5 +1,5 @@
 // Rent breakdown will just be [4, 10]
-class Company extends Property {
+class Utility extends Property {
     
     constructor(propertyName, propertyCost, rentBreakdown, groupName){
         super(propertyName, propertyCost, rentBreakdown, groupName);
