@@ -1,6 +1,10 @@
 import { defaultMonopoly } from "./DefaultPropertyList.js";
+import { Deed } from "./Classes/Deed.js";
+import { Railroad } from "./Classes/Railroad.js";
+import { Utility } from "./Classes/Utility.js";
+import { User } from "./Classes/User.js";
 
-class GameBoard {
+export class GameBoard {
     constructor(){
         this._listOfPlayers; // Holds User objects
         this._chancePile; // Holds chance wild cards 
@@ -8,12 +12,17 @@ class GameBoard {
         this._listOfTiles; // Holds tile objects
         this._listOfProperties = this.generatePropertiesList(); 
         this._turnCount = 1;
+        this._banker = new User(0, "#ffffff" , "none", true);
     }
 
     static rollDice(){
         let firstValue = Math.floor(Math.random() * 6);
         let secondValue = Math.floor(Math.random() * 6);
         return [firstValue, secondValue]
+    }
+
+    get getListOfProperties(){
+        return this._listOfProperties;
     }
 
     getPropertyByName(NameOfProperty){
@@ -36,6 +45,7 @@ class GameBoard {
                         prop.PropertyCost,
                         prop.RentBreakdown,
                         key,
+                        this._banker,
                         prop.HouseCost,
                         prop.HotelCost
                     );
@@ -46,18 +56,22 @@ class GameBoard {
                         prop.PropertyName,
                         prop.PropertyCost,
                         prop.RentBreakdown,
-                        key);
+                        key,
+                        this._banker
+                    );
                 }
                 else {
                     propertyToAdd = new Railroad(
                         prop.PropertyName,
                         prop.PropertyCost,
                         prop.RentBreakdown,
-                        key
+                        key,
+                        this._banker
                     );  
                 }
                 outputPropList.push(propertyToAdd);
             }
         }
+        return outputPropList;
     }
 }

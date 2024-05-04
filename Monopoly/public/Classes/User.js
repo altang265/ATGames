@@ -1,9 +1,9 @@
-class User {
+export class User {
 
     constructor(playerNumber, playerColor, playerToken, isBanker){
         this._playerNumber = playerNumber;
         this._playerColor = playerColor;
-        this._totalCash = 1500;
+        this._totalCash = (isBanker ? 1000000 : 1500);
         this._listOfProperties = []; // Stores list of property names
         this._isRetired = false;
         this._isBanker = isBanker;

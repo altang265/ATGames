@@ -2,7 +2,7 @@
 * This class is just to create a default list of properties using the default names in the original monopoly game.
 */
 
-const defaultMonopoly = {
+export const defaultMonopoly = {
     // Keys will be the group name
     "Brown" : 
     [

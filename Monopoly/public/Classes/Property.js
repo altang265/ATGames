@@ -1,16 +1,16 @@
-class Property {
+export class Property {
     /*
     * Color: String
     * PropName: String
     * PropertyCost: int
     * rentBreakdown: int[]
     */
-    constructor(propertyName, propertyCost, rentBreakdown, groupName){
+    constructor(propertyName, propertyCost, rentBreakdown, groupName, banker){
         this._propertyName = propertyName;
         this._propertyCost = propertyCost;
         this._rentBreakdown = rentBreakdown;
         this._isMortgaged = false;
-        this._owner;
+        this._owner = banker;
         this._groupName = groupName;
     }
 

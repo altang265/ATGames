@@ -1,4 +1,3 @@
-
 /* This class is for housing properties that the user can purchase 
 * throughout the entire board.
 * RentBreakdown[] === [
@@ -9,9 +8,10 @@
 *    rentWithFourHouses,
 *    rentWithHotel]
 */
-class Deed extends Property {
-    constructor(propertyName, propertyCost, rent, groupName, houseCost, hotelCost){
-        super(propertyName, propertyCost, rent, groupName);
+import { Property } from "./Property.js";
+export class Deed extends Property {
+    constructor(propertyName, propertyCost, rent, groupName, houseCost, hotelCost, banker){
+        super(propertyName, propertyCost, rent, groupName, banker);
         this._houseCost = houseCost;
         this._hotelCost = hotelCost;
         this._numOfHouses = 0;

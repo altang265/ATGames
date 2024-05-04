@@ -1,7 +1,9 @@
-class Railroad extends Property{
+import { Property } from "./Property.js";
 
-    constructor(propertyName, propertyCost, rentBreakdown, groupName){
-        super(propertyName, propertyCost, rentBreakdown, groupName);
+export class Railroad extends Property{
+
+    constructor(propertyName, propertyCost, rentBreakdown, groupName, banker){
+        super(propertyName, propertyCost, rentBreakdown, groupName, banker);
     }
 
     calculateRent(){

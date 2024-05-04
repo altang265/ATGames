@@ -1,5 +1,7 @@
 // Rent breakdown will just be [4, 10]
-class Utility extends Property {
+import { Property } from "./Property.js";
+
+export class Utility extends Property {
     
     constructor(propertyName, propertyCost, rentBreakdown, groupName){
         super(propertyName, propertyCost, rentBreakdown, groupName);
@@ -8,6 +10,6 @@ class Utility extends Property {
     calculateRent(diceRoll){
         let owner = this._owner;
         let otherCompany = (this._propertyName === "")
-        if(owner.__listOfProperties.includes())
+        if(owner.__listOfProperties.includes());
     }
 }
