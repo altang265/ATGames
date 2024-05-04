@@ -1,5 +1,10 @@
-import {GameBoard} from "./GameBoard.js";
+/*
+ This module bridges the interaction between the users of the
+ game and the logic of the game. 
+*/
+import { PlayerBoardController } from "./PlayerBoardController";
 
-const game = new GameBoard();
+const game = new PlayerBoardController();
 
-console.log(game.getListOfProperties);
+
+// console.log(game.getListOfProperties);

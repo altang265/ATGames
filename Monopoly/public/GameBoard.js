@@ -16,12 +16,6 @@ export class GameBoard {
         this._banker = new User(0, "#FFFFFF" , "none", true);
     }
 
-    static rollDice(){
-        let firstValue = Math.floor(Math.random() * 6);
-        let secondValue = Math.floor(Math.random() * 6);
-        return [firstValue, secondValue]
-    }
-
     get getListOfProperties(){
         return this._listOfProperties;
     }
