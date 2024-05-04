@@ -10,11 +10,25 @@
 */
 import { Property } from "./Property.js";
 export class Deed extends Property {
+
+    #_houseCost;
+    #_hotelCost;
+    #_numOfHouses;
     constructor(propertyName, propertyCost, rent, groupName, houseCost, hotelCost, banker){
         super(propertyName, propertyCost, rent, groupName, banker);
         this._houseCost = houseCost;
         this._hotelCost = hotelCost;
         this._numOfHouses = 0;
+    }
+
+    get getNumberOfHouses(){
+        return this.#_numOfHouses;
+    }
+    get getHotelCost(){
+        return this.#_hotelCost;
+    }
+    get getHouseCost(){
+        return this.#_houseCost;
     }
 
     calculateRent(){

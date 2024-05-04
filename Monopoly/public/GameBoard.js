@@ -5,14 +5,15 @@ import { Utility } from "./Classes/Utility.js";
 import { User } from "./Classes/User.js";
 
 export class GameBoard {
+
     constructor(){
         this._listOfPlayers; // Holds User objects
         this._chancePile; // Holds chance wild cards 
         this._communityPile; // Holds community wild cards
         this._listOfTiles; // Holds tile objects
-        this._listOfProperties = this.generatePropertiesList(); 
+        this._listOfProperties = this.#generatePropertiesList(); 
         this._turnCount = 1;
-        this._banker = new User(0, "#ffffff" , "none", true);
+        this._banker = new User(0, "#FFFFFF" , "none", true);
     }
 
     static rollDice(){
@@ -33,7 +34,7 @@ export class GameBoard {
         return -1;
     }
 
-    generatePropertiesList() {
+    #generatePropertiesList() {
         let outputPropList = [];
         // Key = color , value = properties in that color set
         for (let [key, value] of Object.entries(defaultMonopoly)){
@@ -74,4 +75,16 @@ export class GameBoard {
         }
         return outputPropList;
     }
+    // Given a group name (i.e. Brown), returns all other 
+    // deeds that have the same group name as an array
+    getDeedGrouping(inputGroupName){
+        let output = [];
+        for(let prop of this._listOfProperties){
+            if(prop.getGroupName === inputGroupName){
+                output.push(prop);
+            }
+        }
+        return output;
+    }
+    
 }

@@ -5,13 +5,24 @@ export class Property {
     * PropertyCost: int
     * rentBreakdown: int[]
     */
+    #_propertyName;
+    #_propertyCost;
+    #_rentBreakdown;
+    #_isMortgaged;
+    #_owner;
+    #_groupName;
+    
     constructor(propertyName, propertyCost, rentBreakdown, groupName, banker){
-        this._propertyName = propertyName;
-        this._propertyCost = propertyCost;
-        this._rentBreakdown = rentBreakdown;
-        this._isMortgaged = false;
-        this._owner = banker;
-        this._groupName = groupName;
+        this.#_propertyName = propertyName;
+        this.#_propertyCost = propertyCost;
+        this.#_rentBreakdown = rentBreakdown;
+        this.#_isMortgaged = false;
+        this.#_owner = banker;
+        this.#_groupName = groupName;
+    }
+
+    get getGroupName(){
+        return this.#_groupName;
     }
 
     mortgageValue() {
@@ -21,4 +32,5 @@ export class Property {
     setOwner(newOwner) {
         this._owner = newOwner;
     }
+
 }
