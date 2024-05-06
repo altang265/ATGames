@@ -1,0 +1,32 @@
+body h1 {
+    text-align: center;
+    margin: 0 10px;
+}
+
+#ContentContainer {
+    width: auto;
+    height: 85vh;
+    background-color: lightblue;
+    border: 5px solid lightskyblue;
+    border-radius: 10px;
+    padding: 5%;
+}
+
+#PlayAndSettingsContainer {
+    width: 50vw;
+    height: 50vh;
+    margin: 0 auto;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 40vh;
+}
+
+.MainPageButtons {
+    font-size: larger;
+    border-radius: 15px;
+    padding: 7px 10px;
+    vertical-align: middle;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
