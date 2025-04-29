@@ -7,7 +7,12 @@ export const defaultWildCardList = {
     "Chance" : 
     {
         "PayToBank" : [],
-        "BankPaysPlayer" : [],
+        "BankPaysPlayer" : [
+            {
+                "Text" : "Bank pays you dividend of $50",
+                "Amount" : 50 
+            }
+        ],
         "CollectMoneyFromBank" : [],
         "AdvanceToX" : 
         [
@@ -21,7 +26,10 @@ export const defaultWildCardList = {
              "from the Bank. If owned, pay wonder twice the rental" + 
              "to which they are otherwise entitled",
             "nearest Utility. If unowned, you may buy it from the Bank." +
-             "If owned, throw dice and pay owner a total ten times amount thrown.",
+             "If owned, throw dice and pay owner a total ten times amount " + 
+             "thrown.",
+            "Go to Jail. Go directly to Jail, do not pass Go, do not collect $200",
+            
             
         ]
     }  
