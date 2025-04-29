@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="../Styling/ConnectionsStyling.css">
     <link rel="stylesheet" href="../Styling/GameContentStyling.css">
     <link rel="stylesheet" href="../Styling/ResultsScreen.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script defer type="module" src="../public/Connections.js"></script>
     <script>
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -31,7 +33,7 @@
         <div id="GameTitleScreen">
             <p id="GameContentTitle"><b>Connections</b></p>
             <p>Group words that share a common thread.</p>
-            <select id="DifficultySelection">
+            <select id="DifficultySelection" class="form-select" style="width: 30vw; margin: 0 auto;">
                 <option class="Difficulty" id="Default" value="Default">Today's Connection</option>
                 <option class="Difficulty" id="EasyChoice" value="Easy">Easy</option>
                 <option class="Difficulty" id="MediumChoice" value="Medium">Medium</option> 
@@ -49,9 +51,9 @@
         </div>
         <div style="display: none;" id="livesSection"></div>
         <div id="userControlsContainer">
-            <input type="button" value="Shuffle" id="ShuffleButton">
-            <input type="button" value="Deselect-all" id="DeselectButton">
-            <input type="button" value="Submit" id="SubmitButton">
+            <input type="button" value="Shuffle" id="ShuffleButton" class="btn btn-light">
+            <input type="button" value="Deselect-all" id="DeselectButton" class="btn btn-light">
+            <input type="button" value="Submit" id="SubmitButton" class="btn btn-light">
         </div>
         <input style="display: none;" type="button" value="Show Results" id="ShowResultsButton">
     </div>

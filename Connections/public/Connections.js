@@ -70,6 +70,12 @@ function shuffleArray(inputArray) {
         randomIndex = Math.floor(Math.random() * tempArray.length);
         outputArray.push(tempArray.splice(randomIndex, 1));
     }
+    console.log("Shuffled Array: " + outputArray);
+    console.log("User selections when shuffled: ");
+    for(let i = 0; i < userSelections.length; i++){
+        console.log(userSelections[i]);
+    }
+    
     return outputArray;
 }
 // Initial time
@@ -122,17 +128,26 @@ let completedCats = [];
 
 // User clicks on one of the buttons
 function cardToggleAction(){
+    console.log("User clicked on: " + this.innerHTML);
     let classList = this.classList;
     // If we click on a card that has already been selected then we should remove the selected card class
     // and remove it from the user selections array
-    if(classList.contains("selected_card")){
-        classList.toggle("selected_card");
+    
+        
         let iOfCard = userSelections.indexOf(this);
         if(iOfCard != -1){
+            this.classList.toggle("selected_card");
+            console.log("Removed: " + userSelections[iOfCard].innerHTML);
             userSelections.splice(iOfCard, 1);
+            return;
         }
+        
+    
+    // If there are 4 then we should not let the user select anymore
+    if(userSelections.length == 4) {
         return;
     }
+
     if(userSelections.length < 4){
         // If there are less then 4 then we should add it to the user selections array 
         // and add the selected css class to it
@@ -140,11 +155,8 @@ function cardToggleAction(){
         userSelections.push(this);
     }
     
-    // If there are 4 then we should not let the user select anymore
-    if(userSelections.length == 4) {
-        return;
-    }
-    // console.log("User clicked on: " + this.innerHTML);
+    
+    
 }
 
 // Helper function: Given a word. Return the category color it belongs to.
