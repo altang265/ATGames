@@ -226,6 +226,19 @@ function completeCategory(color, arrayOfUserAnswers){
     --categoriesLeft
     setUpBoard();
 }
+/* Function that plays the wrong answer shake animation 
+* Takes in inputArray (Full of Card objects) and adds the wrongAnswer css class. 
+*/
+function wrongAnswer(inputArray){
+    for(let c of inputArray){
+        c.classList.add("wrongAnswer");
+    }
+    return;
+}
+function removeWrongAnswerClass(inputArray){
+    
+}
+
 // Helper function: Given an array of colors. 
 // Returns 1 if the user is one word away.
 // Returns 0 if the user is zero words away 
@@ -264,10 +277,22 @@ function numWordsAway(inputArray){
             "Color" : c,
         };
     } else if (dict.includes(3)){
+        wrongAnswer(inputArray);
         livesLeft--;
+        setTimeout(() => {
+            for(let c of inputArray){
+                c.classList.remove("wrongAnswer");
+            }
+        }, 2000);
         return 1;
     } else {
+        wrongAnswer(inputArray);
         livesLeft--;
+        setTimeout(() => {
+            for(let c of inputArray){
+                c.classList.remove("wrongAnswer");
+            }
+        }, 2000);
         return -1;
     }
     
@@ -287,7 +312,6 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
     } else {
         // TODO Add the shake effect when the user gets it wrong
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
-        // do something 
     }
     if(livesLeft == 0){
         showResults(false);

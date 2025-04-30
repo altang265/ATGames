@@ -39,7 +39,7 @@
                 <option class="Difficulty" id="MediumChoice" value="Medium">Medium</option> 
                 <option class="Difficulty" id="HardChoice" value="Hard">Hard</option>
             </select>
-            <select id="GameNumberSelection" style="display: none;">
+            <select id="GameNumberSelection" class="form-select" style="display: none;">
                 <!-- Dynamically add options for each possible game -->
             </select>
             <br>
@@ -55,8 +55,8 @@
             <input type="button" value="Deselect-all" id="DeselectButton" class="btn btn-light">
             <input type="button" value="Submit" id="SubmitButton" class="btn btn-light">
         </div>
-        <input style="display: none;" type="button" value="Show Results" id="ShowResultsButton">
-    </div>
+        <input class="btn btn-light" style="display: none; width: fit-content;" type="button" value="Show Results" id="ShowResultsButton">
+        </div>
     <!-- Results Screen -->
     <div id="ResultsContainer" style="display: none;">
         <input type="button" value="&#x2716;" id="CloseResults">
