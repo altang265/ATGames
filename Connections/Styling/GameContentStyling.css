@@ -86,14 +86,14 @@
 @media (max-width: 800px) {
     .GameCard {
         margin: 10px;
-        height: 30px;
+        height: fit-content;
         min-width: 60px;
         background-color: beige;
         border-radius: 6px;
         font-weight: 800;
         cursor: pointer;
         overflow: hidden;
-        font-size: 9px;
+        font-size: 10px;
         text-align: center;
         vertical-align: middle;
         line-height: 50px;
