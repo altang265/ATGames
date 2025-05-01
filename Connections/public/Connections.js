@@ -44,10 +44,10 @@ function setupWordList(){
     diffSelectionValue = document.getElementById("DifficultySelection").value;
     if(diffSelectionValue != "Default") {
         let selectedGameNumber = document.getElementById("GameNumberSelection").value;
-        console.log("The number they selected: " + selectedGameNumber);
+        // console.log("The number they selected: " + selectedGameNumber);
         currentGame = getConnectionsGame(selectedGameNumber, difficultyConnectionsList);
         categoryList = currentGame.List_of_Categories
-        console.log(categoryList);
+        // console.log(categoryList);
     } else {
         currentGame = TodaysConnection;
         categoryList = currentGame.List_of_Categories;
@@ -70,11 +70,11 @@ function shuffleArray(inputArray) {
         randomIndex = Math.floor(Math.random() * tempArray.length);
         outputArray.push(tempArray.splice(randomIndex, 1));
     }
-    console.log("Shuffled Array: " + outputArray);
-    console.log("User selections when shuffled: ");
-    for(let i = 0; i < userSelections.length; i++){
-        console.log(userSelections[i]);
-    }
+    // console.log("Shuffled Array: " + outputArray);
+    // console.log("User selections when shuffled: ");
+    // for(let i = 0; i < userSelections.length; i++){
+    //     console.log(userSelections[i]);
+    // }
     
     return outputArray;
 }
@@ -128,7 +128,7 @@ let completedCats = [];
 
 // User clicks on one of the buttons
 function cardToggleAction(){
-    console.log("User clicked on: " + this.innerHTML);
+    // console.log("User clicked on: " + this.innerHTML);
     let classList = this.classList;
     // If we click on a card that has already been selected then we should remove the selected card class
     // and remove it from the user selections array
@@ -137,7 +137,7 @@ function cardToggleAction(){
         let iOfCard = userSelections.indexOf(this);
         if(iOfCard != -1){
             this.classList.toggle("selected_card");
-            console.log("Removed: " + userSelections[iOfCard].innerHTML);
+            // console.log("Removed: " + userSelections[iOfCard].innerHTML);
             userSelections.splice(iOfCard, 1);
             return;
         }
