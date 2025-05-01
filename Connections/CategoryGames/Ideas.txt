@@ -1,9 +1,4 @@
 Category + word list:
-- Ways to describe a fruit flavor-wise: 
-	- Juicy
-	- Tart
-	- Tangy
-	- Crunchy/Crisp
 
 - Painting equipment
 	"Tarp", "Brushes" , "Palette" , "Masking"
@@ -17,12 +12,6 @@ Category + word list:
 	- Sharing
 	- Transfer
 	- Permissions
-	
-- Starts with ham
-	- mock
-	- burg
-	- burger
-	- string
 
 - Things that make your room smell better
 	- Candles
@@ -76,3 +65,4 @@ Category + word list:
 	- Gamma
 	"Micro" , "Radio" , "Visible" , "Gamma"
 
+- Types of simulations

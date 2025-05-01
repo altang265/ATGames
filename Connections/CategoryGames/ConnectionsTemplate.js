@@ -23,7 +23,7 @@ const categoryFour = {
 }
 
 export const ConnectionsGame = {
-    "Number" : 1,
+    "Number" : 20,
     "Difficulty" : "",
     "List_of_Categories" : [categoryOne, categoryTwo, categoryThree, categoryFour],
 }
