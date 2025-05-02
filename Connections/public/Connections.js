@@ -268,7 +268,6 @@ function numWordsAway(inputArray){
     // console.log("Num Words away submission history: " + submissionHistoryList + "\n");
     // console.log(dict + "Here is the dictionary of the onewordaway func");
     // Worry only about having a max of three or four
-    // TODO Keep track of all the guesses the user has made in an array. 
     // (For the screen that displays at the end)
     if(dict.includes(4)){
         completeCategory(c, userSelections);
@@ -280,19 +279,21 @@ function numWordsAway(inputArray){
         wrongAnswer(inputArray);
         livesLeft--;
         setTimeout(() => {
+            
             for(let c of inputArray){
                 c.classList.remove("wrongAnswer");
             }
-        }, 2000);
+        }, 500);
         return 1;
     } else {
         wrongAnswer(inputArray);
         livesLeft--;
         setTimeout(() => {
+            
             for(let c of inputArray){
                 c.classList.remove("wrongAnswer");
             }
-        }, 2000);
+        }, 500);
         return -1;
     }
     
@@ -310,7 +311,6 @@ document.getElementById("SubmitButton").addEventListener("click", () => {
         alert("One Word away...");
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
     } else {
-        // TODO Add the shake effect when the user gets it wrong
         document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
     }
     if(livesLeft == 0){
@@ -324,6 +324,7 @@ document.getElementById("TryAgainButton").addEventListener("click", () => {
     isContinuation = true;
     // Resetting the users lives
     livesLeft = 4;
+    document.getElementById("GuessHistoryContainer").replaceChildren();
     document.getElementById("livesSection").innerHTML = "Lives Left: " + livesLeft;
     document.getElementById("ResultsContainer").style.display = "none";
     document.getElementById('GameContainer').style.opacity = "100%";
@@ -437,7 +438,7 @@ function showResults(isWin){
     document.getElementById("ResultsContainer").style.display = "block";
     
     let numRows = submissionHistoryList.length/4;
-    let historyIter = 0;
+    let historyIter = (submissionHistoryList.length / 16 - 1) * 16;
 
     // If this is a continuation of a game then we need to clear the results container
     // to make room for the other rows
@@ -445,7 +446,7 @@ function showResults(isWin){
     let row;
     // TODO Create a history that is stored in the localStorage
     // Create a row for every submission the user made throughout the game
-    for(let i = 1; i <= numRows; i++){
+    for(let i = 0; i < 4; i++){
         row = document.createElement("div");
         row.setAttribute("class", "ResultsRow");
         // console.log("Row " + i + " created.\n");
