@@ -19,17 +19,6 @@ Category + word list:
 	- Freshener
 	- Incense
 
-- Types of Tape
-	- Barricade 
-	- Scotch
-	- Cellophane
-	- Cloth
-	- Decorative
-	- Duct
-	- Electrical
-	- Grip
-	- Mounting
-	- Packaging 
 
 	
 - Addictions
@@ -42,13 +31,6 @@ Category + word list:
 	- Gaming
 	- Social Media
 
-- Made out of paper
-	- Books
-	- Magazines
-	- notebooks
-	- Origami
-	- Confetti
-	- Cardboard
 
 - Data Storage Devices
 	- Compact (CD)

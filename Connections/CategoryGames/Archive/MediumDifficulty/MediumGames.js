@@ -5,5 +5,6 @@ import {ConnectionsGame as fourteen } from "./Connections_14.js"
 import {ConnectionsGame as fifteen } from "./Connections_15.js"
 import {ConnectionsGame as sixteen } from "./Connections_16.js"
 import {ConnectionsGame as eighteen } from "./Connections_18.js"
+import {ConnectionsGame as nineteen } from "./Connections_19.js"
 
-export let MediumConnections = [one, five, six, fourteen, fifteen, sixteen, eighteen];
+export let MediumConnections = [one, five, six, fourteen, fifteen, sixteen, eighteen, nineteen];
